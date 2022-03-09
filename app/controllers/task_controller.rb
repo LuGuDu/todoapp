@@ -13,7 +13,7 @@ class TaskController < ApplicationController
     end
 
     def read_by_tag
-        @tasks = Taks.all
+        @tasks = Task.all
         #buscar en la descripcion un substring #XXX
     end
 
