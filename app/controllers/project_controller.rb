@@ -3,6 +3,9 @@ class ProjectController < ApplicationController
 
     def list
         @projects = Project.all
+        respond_to do |format|
+            format.html { render template: 'projects/list', layout: 'layouts/application', status: 200}
+        end
     end
 
     def new

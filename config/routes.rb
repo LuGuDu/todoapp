@@ -5,11 +5,13 @@ Rails.application.routes.draw do
   root "application#index"
 
   get 'task/list'
+  get 'task/list_today'
   post 'task/create'
   delete 'task/delete'
-  
+
+  get 'project/list'
   post 'project/create'
 
-  match '*path' => redirect('/'), via: :get
+  #match '*path' => redirect('/'), via: :get
 
 end

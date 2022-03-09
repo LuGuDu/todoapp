@@ -7,9 +7,12 @@ class TaskController < ApplicationController
 
     def list
         @tasks = Task.all
-        @tasks.each do |val|
-            puts(val[:title])
+        respond_to do |format|
+            format.html { render template: 'tasks/list', layout: 'layouts/application', status: 200}
         end
+    end
+
+    def list_today
     end
 
     def read_by_tag
@@ -18,7 +21,7 @@ class TaskController < ApplicationController
     end
 
     def list_by_project
-        @tasks = Task.find(:project_id params[:projectId])
+        @tasks = Task.find(params[:projectId])
         @tasks.each do |val|
             puts(val[:title])
         end
