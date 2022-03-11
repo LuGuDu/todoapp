@@ -8,17 +8,18 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
         <!--========== CSS ==========-->
-        <link rel="stylesheet" href="css/styles.css">
-
+         <link rel="stylesheet" href="css/styles.css"> 
+       
         <title>Todoapp</title>
     </head>
     <body>
         <!--========== HEADER ==========-->
         <header class="header">
             <div class="header__container">
-                <img src="img/perfil.jpg" alt="" class="header__img">
+                 <!-- Profile Pic --> 
+              <!--  <img src="img/perfil.jpg" alt="" class="header__img"> -->
 
-                <a href="#" class="header__logo">Bedimcode</a>
+                <a href="#" class="header__logo">TodoList</a>
     
                 <div class="header__search">
                     <input type="search" placeholder="Search" class="header__input">
@@ -36,8 +37,8 @@
             <nav class="nav__container">
                 <div>
                     <a href="#" class="nav__link nav__logo">
-                        <i class='bx bxs-disc nav__icon' ></i>
-                        <span class="nav__logo-name">Bedimcode</span>
+                        <img src="img/124772.png" alt="Logo" style="width : 2rem" >
+                        <span class="nav__logo-name">ToDoList</span>
                     </a>
     
                     <div class="nav__list">
@@ -64,13 +65,14 @@
                                     </div>
                                 </div>
                             </div>
-
+                           <!-- Massages 
                             <a href="#" class="nav__link">
                                 <i class='bx bx-message-rounded nav__icon' ></i>
                                 <span class="nav__name">Messages</span>
                             </a>
+                            --> 
                         </div>
-    
+                      <!-- Menu
                         <div class="nav__items">
                             <h3 class="nav__subtitle">Menu</h3>
     
@@ -100,8 +102,8 @@
                                 <i class='bx bx-bookmark nav__icon' ></i>
                                 <span class="nav__name">Saved</span>
                             </a>
-                        </div>
-                    </div>
+                        </div>-->
+                    </div> 
                 </div>
 
                 <a href="#" class="nav__link nav__logout">
@@ -110,15 +112,10 @@
                 </a>
             </nav>
         </div>
-
+        <h2> hello </h2>
         <!--========== CONTENTS ==========-->
         <main>
-            <section>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt vel illum fuga unde cum, voluptates magni molestias eveniet culpa autem ut, totam veniam, suscipit tempore ullam pariatur est at asperiores?</p>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt vel illum fuga unde cum, voluptates magni molestias eveniet culpa autem ut, totam veniam, suscipit tempore ullam pariatur est at asperiores?</p>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt vel illum fuga unde cum, voluptates magni molestias eveniet culpa autem ut, totam veniam, suscipit tempore ullam pariatur est at asperiores?</p>
-            </section>
-
+      
             <%= yield %>
 
         </main>

@@ -54,7 +54,9 @@ body {
 h3 {
   margin: 0;
 }
-
+h2{
+  color : red ; 
+}
 a {
   text-decoration: none;
 }
@@ -331,4 +333,9 @@ img {
   .nav:hover .nav__dropdown-icon {
     opacity: 1;
   }
+}
+
+
+.smth{
+  color : red ; 
 }
