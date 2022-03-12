@@ -9,10 +9,12 @@ Rails.application.routes.draw do
   post 'task/create'
   delete 'task/delete'
 
-  get 'project/list'
+  get 'project', to: "project#list"
   get 'project/create', to: "project#create_form"
   post 'project/create'
   delete 'project/delete/:id', to: "project#delete"
+  get 'project/update/:id', to: "project#update_form"
+  post 'project/update', to: "project#update" #CHANGE TO PATCH ON FUTURE
 
 
   #match '*path' => redirect('/'), via: :get

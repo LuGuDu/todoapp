@@ -21,7 +21,7 @@ class ProjectController < ApplicationController
     def create
         @project = Project.new({"title"=> params["title"], "description"=> params["description"]}) 
         if @project.save
-            redirect_to "/project/list"
+            redirect_to "/project"
         else
         end
         
@@ -30,8 +30,28 @@ class ProjectController < ApplicationController
     def delete
         @project = Project.find(params[:id])
         if @project.destroy
-            redirect_to "/project/list"
+            redirect_to "/project"
         else
+        end
+    end
+
+    def update_form
+        @project = Project.find(params[:id])
+        respond_to do |format|
+            format.html { render template: 'projects/update', layout: 'layouts/application', status: 200}
+        end
+    end
+
+    def update
+        puts(params)
+        @project = Project.find(params[:id])
+        @project.title = params[:title]
+        @project.description = params[:description]
+
+        if @project.save
+            redirect_to "/project"
+        else
+            #redirect_to "/project"
         end
     end
 

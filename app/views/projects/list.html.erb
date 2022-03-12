@@ -9,10 +9,11 @@
     <ul>
     <% @projects.each do |project| %> 
         <li>
-            <div class='projectTitle'><%= project.title %> </div>
+            <div>
+            <%= project.title %> 
             <%= button_to 'delete', "/project/delete/#{project.id}", method: :delete %>
-
-            <div class='projectId' style="display:none;"><%= project.id %></div>
+            <%= button_to 'update', "/project/update/#{project.id}", method: :get %>
+            </div>
         </li>
     <% end %>
     </ul>
