@@ -1,8 +1,18 @@
 <div>
+<form action="/project/create" method="get">
+    <input type="submit" value="Create Project" 
+         name="Submit" id="frm1_submit" />
+</form>
+</div>
+
+<div>
     <ul>
     <% @projects.each do |project| %> 
         <li>
-            <div><%= project.title %></div>
+            <div class='projectTitle'><%= project.title %> </div>
+            <%= button_to 'delete', "/project/delete/#{project.id}", method: :delete %>
+
+            <div class='projectId' style="display:none;"><%= project.id %></div>
         </li>
     <% end %>
     </ul>

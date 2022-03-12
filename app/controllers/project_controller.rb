@@ -11,16 +11,27 @@ class ProjectController < ApplicationController
     def new
         @project = Project.new
     end
+    
+    def create_form
+        respond_to do |format|
+            format.html { render template: 'projects/create', layout: 'layouts/application', status: 200}
+        end
+    end
 
     def create
-        @project = Project.new(project_params)
+        @project = Project.new({"title"=> params["title"], "description"=> params["description"]}) 
+        if @project.save
+            redirect_to "/project/list"
+        else
+        end
+        
+    end
 
-        respond_to do |format|
-            if @project.save
-                format.json { render :show, status: :created, location: @project }
-            else
-                format.json { render json: @project.errors, status: :unprocessable_entity }
-            end
+    def delete
+        @project = Project.find(params[:id])
+        if @project.destroy
+            redirect_to "/project/list"
+        else
         end
     end
 

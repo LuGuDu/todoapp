@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   delete 'task/delete'
 
   get 'project/list'
+  get 'project/create', to: "project#create_form"
   post 'project/create'
+  delete 'project/delete/:id', to: "project#delete"
+
 
   #match '*path' => redirect('/'), via: :get
 
