@@ -5,8 +5,16 @@ class TaskController < ApplicationController
         @task = Task.find(params[:projectId])
     end
 
-    def list
+    def list_all
         @tasks = Task.all
+        respond_to do |format|
+            format.html { render template: 'tasks/list', layout: 'layouts/application', status: 200}
+        end
+    end
+
+    def list
+        @tasks = Task.where(:done => 'false')
+        print(@tasks)
         respond_to do |format|
             format.html { render template: 'tasks/list', layout: 'layouts/application', status: 200}
         end
