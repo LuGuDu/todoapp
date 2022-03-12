@@ -28,18 +28,24 @@ class TaskController < ApplicationController
     end
 
     def create
-        @task = Task.new(task_params)
+        @task = Task.new
+        @task.title = task_params["title"]
+        @task.description = task_params["description"]
+        @task.priority = task_params["priority"]
+        @task.dateCreation = DateTime.current
+        @task.dateDeadLine = DateTime.current
+        @task.done = false
 
         #es necesario comprobar si el proyecto existe o no
-        @project = Project.find(params[:projectId])
+        #@project = Project.find(params[:projectId])
 
-        @task[:project_id] = @project[:id]
+        #@task[:project_id] = @project[:id]
         
         @task.save
     end
 
     def task_params
-        params.require(:task).permit(:id, :title, :description, :priority, :projectId)
+        params.require(:task).permit(:title, :description, :priority, :projectId)
     end
 
     def update

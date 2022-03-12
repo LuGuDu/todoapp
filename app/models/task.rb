@@ -1,9 +1,11 @@
 class Task
   include Mongoid::Document
-  field :id, type: Integer
   field :title, type: String
   field :description, type: String
   field :priority, type: Integer
+  field :dateCreation, type: DateTime
+  field :dateDeadLine, type: DateTime
+  field :done, type: Boolean
   
   belongs_to :project, optional: true
 end
