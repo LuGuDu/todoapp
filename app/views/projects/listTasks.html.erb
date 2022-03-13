@@ -1,0 +1,19 @@
+<div>
+<h1>TASKS OF <%= @project.title %></h1>
+</div>
+
+<div>
+    <ul>
+    <% @tasks.each do |task| %> 
+    <% if task.done == false %>
+        <li>
+            <div>
+            <%= task.title %>  
+            <%= button_to 'Done', "/task/check/#{task.id}", method: :patch %>  
+            <%= button_to 'update', "/task/update/#{task.id}", method: :get %>
+            </div>
+        </li>
+        <% end%>
+    <% end %>
+    </ul>
+</div>
