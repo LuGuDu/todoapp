@@ -20,6 +20,15 @@ class TaskController < ApplicationController
         end
     end
 
+    def check
+        @task = Task.find(params[:id])
+        @task.done = true
+        if @task.save
+            redirect_to "/task"
+        else
+        end
+    end
+
     def list_today
     end
 

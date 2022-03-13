@@ -2,7 +2,11 @@
     <ul>
     <% @tasks.each do |task| %> 
         <li>
-            <div><%= task.title %></div>
+            <div><%= task.title %>
+            <% if task.done == false %>
+                <%= button_to 'Done', "/task/check/#{task.id}", method: :patch %>
+            <% end%>
+            </div>
         </li>
     <% end %>
     </ul>

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'task', to: "task#list"
   get 'task/list_today'
   post 'task/create'
+  patch 'task/check/:id', to:"task#check"
   delete 'task/delete'
 
   get 'project', to: "project#list"

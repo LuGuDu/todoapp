@@ -1,0 +1,14 @@
+<div>
+<h1>UPDATE -<%= @task.title %>- TASK</h1>
+</div>
+
+<form action="/task/update/" method='post' value='project'>
+
+  <input style="display:none" type="hidden" id="id" name="id" value=<%= @task.id %> ><br>
+
+  <label for="fname">Title:</label><br>
+  <input type="text" id="title" name="title" value=<%= @task.title %> ><br>
+  <label for="lname">Description:</label><br>
+  <input type="text" id="description" name="description" value=<%= @task.description %> ><br><br>
+  <input type="submit" value="Update">
+</form> 
