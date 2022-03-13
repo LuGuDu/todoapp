@@ -10,7 +10,7 @@
     <% @projects.each do |project| %> 
         <li>
             <div>
-            <%= project.title %> 
+            <%= link_to project.title, "/project/#{project.id}", method: :get %>
             <%= button_to 'delete', "/project/delete/#{project.id}", method: :delete %>
             <%= button_to 'update', "/project/update/#{project.id}", method: :get %>
             </div>

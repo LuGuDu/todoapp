@@ -8,13 +8,15 @@ Rails.application.routes.draw do
 
   get 'task', to: "task#list"
   get 'task/list_today'
+  get 'task/create', to: "task#create_form"
   post 'task/create'
   patch 'task/check/:id', to:"task#check"
-  delete 'task/delete'
+  delete 'task/delete/:id', to:"task#delete"
 
   get 'project', to: "project#list"
   get 'project/create', to: "project#create_form"
   post 'project/create'
+  get 'project/:id', to: "project#task_list"
   delete 'project/delete/:id', to: "project#delete"
   get 'project/update/:id', to: "project#update_form"
   post 'project/update', to: "project#update" #CHANGE TO PATCH ON FUTURE

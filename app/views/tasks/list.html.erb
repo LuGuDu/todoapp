@@ -1,4 +1,11 @@
 <div>
+<form action="/task/create" method="get">
+    <input type="submit" value="Create Task" 
+         name="Submit" id="frm1_submit" />
+</form>
+</div>
+
+<div>
     <ul>
     <% @tasks.each do |task| %> 
         <li>
@@ -6,6 +13,7 @@
             <% if task.done == false %>
                 <%= button_to 'Done', "/task/check/#{task.id}", method: :patch %>
             <% end%>
+            <%= button_to 'Delete', "/task/delete/#{task.id}", method: :delete %>
             </div>
         </li>
     <% end %>

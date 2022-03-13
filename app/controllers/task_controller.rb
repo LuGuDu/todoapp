@@ -14,7 +14,6 @@ class TaskController < ApplicationController
 
     def list
         @tasks = Task.where(:done => 'false')
-        print(@tasks)
         respond_to do |format|
             format.html { render template: 'tasks/list', layout: 'layouts/application', status: 200}
         end
@@ -44,21 +43,30 @@ class TaskController < ApplicationController
         end
     end
 
+    def create_form
+        @projects = Project.all
+
+        respond_to do |format|
+            format.html { render template: 'tasks/create', layout: 'layouts/application', status: 200}
+        end
+    end
+
     def create
         @task = Task.new
-        @task.title = task_params["title"]
-        @task.description = task_params["description"]
-        @task.priority = task_params["priority"]
+        @task.title = params[:title]
+        @task.description = params[:description]
+        @task.priority = params[:priority]
         @task.dateCreation = DateTime.current
-        @task.dateDeadLine = DateTime.current
+        @task.dateDeadLine = DateTime.strptime(params[:deadline], '%Y-%m-%d')
         @task.done = false
 
-        #es necesario comprobar si el proyecto existe o no
-        #@project = Project.find(params[:projectId])
-
-        #@task[:project_id] = @project[:id]
+        if params[:project_id] != 'none'
+            @task.project_id = params[:project_id]
+        end
         
-        @task.save
+        if @task.save
+            redirect_to '/task'
+        end
     end
 
     def task_params
@@ -72,7 +80,10 @@ class TaskController < ApplicationController
     end
 
     def delete
-        #comprobar si existe
-        Task.find(params[:id]).destroy
+        @task = Task.find(params[:id])
+        if @task.destroy
+            redirect_to "/task"
+        else
+        end
     end
 end

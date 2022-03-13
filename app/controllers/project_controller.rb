@@ -8,6 +8,14 @@ class ProjectController < ApplicationController
         end
     end
 
+    def task_list
+        @project = Project.find(params[:id])
+        @tasks = Task.where(:project_id => params[:id])
+        respond_to do |format|
+            format.html { render template: 'projects/listTasks', layout: 'layouts/application', status: 200}
+        end
+    end
+
     def new
         @project = Project.new
     end
@@ -43,7 +51,6 @@ class ProjectController < ApplicationController
     end
 
     def update
-        puts(params)
         @project = Project.find(params[:id])
         @project.title = params[:title]
         @project.description = params[:description]

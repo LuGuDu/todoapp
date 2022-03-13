@@ -10,7 +10,7 @@
             <div>
             <%= task.title %>  
             <%= button_to 'Done', "/task/check/#{task.id}", method: :patch %>  
-            <%= button_to 'update', "/task/update/#{task.id}", method: :get %>
+            <%= button_to 'Delete', "/task/delete/#{task.id}", method: :delete %>
             </div>
         </li>
         <% end%>
