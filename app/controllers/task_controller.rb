@@ -73,10 +73,34 @@ class TaskController < ApplicationController
         params.require(:task).permit(:title, :description, :priority, :projectId)
     end
 
-    def update
-        #comprobar si existe
+    def update_form
+        @projects = Project.all
         @task = Task.find(params[:id])
-        @tasks = Task.all
+        @date = @task.dateDeadLine.strftime('%Y-%m-%d')
+        puts(@task.dateDeadLine)
+
+        if @task.project_id != 'none'
+            @projectTask = Project.find(@task.project_id)
+        end
+
+        respond_to do |format|
+            format.html { render template: 'tasks/update', layout: 'layouts/application', status: 200}
+        end
+    end
+
+    def update
+        @task = Task.find(params[:id])
+        @task.title = params[:title]
+        @task.description = params[:description]
+        @task.priority = params[:priority]
+        @task.dateDeadLine = DateTime.strptime(params[:deadline], '%Y-%m-%d')
+
+        @task.project_id = params[:project_id]
+        
+        if @task.save
+            redirect_to '/task'
+        end
+
     end
 
     def delete

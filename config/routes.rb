@@ -5,13 +5,14 @@ Rails.application.routes.draw do
   root "task#list"
 
   get 'task/list_all'
-
   get 'task', to: "task#list"
   get 'task/list_today'
   get 'task/create', to: "task#create_form"
   post 'task/create'
   patch 'task/check/:id', to:"task#check"
   delete 'task/delete/:id', to:"task#delete"
+  get 'task/update/:id', to:"task#update_form"
+  post 'task/update', to: "task#update" #CHANGE TO PATCH ON FUTURE
 
   get 'project', to: "project#list"
   get 'project/create', to: "project#create_form"
@@ -22,6 +23,6 @@ Rails.application.routes.draw do
   post 'project/update', to: "project#update" #CHANGE TO PATCH ON FUTURE
 
 
-  #match '*path' => redirect('/'), via: :get
+  get '*path', to: "application#page_not_found"
 
 end

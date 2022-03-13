@@ -14,6 +14,7 @@
                 <%= button_to 'Done', "/task/check/#{task.id}", method: :patch %>
             <% end%>
             <%= button_to 'Delete', "/task/delete/#{task.id}", method: :delete %>
+            <%= button_to 'Update', "/task/update/#{task.id}", method: :get %>
             </div>
         </li>
     <% end %>
