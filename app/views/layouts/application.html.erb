@@ -21,11 +21,13 @@
                 <!--<img src="img/perfil.jpg" alt="" class="header__img">-->
 
                 <a href="/" class="header__logo">TodoApp</a>
-    
+
+                <form action="/task/search/" method='get' value='project'>
                 <div class="header__search">
-                    <input type="search" placeholder="Search" class="header__input">
-                    <i class='bx bx-search header__icon'></i>
+                    <input type="search" placeholder="Search" name="search" class="header__input">
+                    <button class='bx bx-search header__icon'></button>       
                 </div>
+                </form>
     
                 <div class="header__toggle">
                     <i class='bx bx-menu' id="header-toggle"></i>

@@ -29,18 +29,33 @@ class TaskController < ApplicationController
     end
 
     def list_today
+        @tasks = []
+        @allTasks = Task.all
+        @allTasks.each do |task|
+            if task.dateDeadLine <= DateTime.current
+                @tasks << task
+            end
+        end
+        respond_to do |format|
+            format.html { render template: 'tasks/list', layout: 'layouts/application', status: 200}
+        end
     end
 
     def read_by_tag
-        @tasks = Task.all
-        #buscar en la descripcion un substring #XXX
+        @tasks = []
+        @allTasks = Task.all
+        @allTasks.each do |task|
+            if task.description.include? params[:search]
+                @tasks << task
+            end
+        end
+        respond_to do |format|
+            format.html { render template: 'tasks/list', layout: 'layouts/application', status: 200}
+        end
     end
 
     def list_by_project
         @tasks = Task.find(params[:projectId])
-        @tasks.each do |val|
-            puts(val[:title])
-        end
     end
 
     def create_form
@@ -77,7 +92,6 @@ class TaskController < ApplicationController
         @projects = Project.all
         @task = Task.find(params[:id])
         @date = @task.dateDeadLine.strftime('%Y-%m-%d')
-        puts(@task.dateDeadLine)
 
         if @task.project_id != 'none' && @task.project_id.present?
             @projectTask = Project.find(@task.project_id)
