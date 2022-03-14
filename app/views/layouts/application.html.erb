@@ -30,7 +30,30 @@
                 </form>
     
                 <div class="header__toggle">
-                    <i class='bx bx-menu' id="header-toggle"></i>
+                    <div class="dropdown-navbar" id="header-toggle">
+                        <span class='bx bx-menu'></span>
+                        <div class="dropdown-content-navbar">
+                            <a href="/task" class="nav__link active">
+                                <i class='bx bx-home nav__icon' ></i>
+                                <span class="nav__name">Inbox </span>
+                            </a>
+
+                            <a href="/task/list_today" class="nav__link">
+                                <i class='bx bx-calendar nav__icon' ></i>
+                                <span class="nav__name">Today's tasks</span>
+                            </a>
+
+                            <a href="/project" class="nav__link">
+                                <i class='bx bx-folder nav__icon' ></i>
+                                <span class="nav__name">Projects</span>
+                            </a>
+
+                            <a href="/task/list_all" class="nav__link">
+                                <i class='bx bx-task nav__icon' ></i>
+                                <span class="nav__name">All tasks</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>

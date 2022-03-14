@@ -374,6 +374,28 @@ img {
   display: block;
 }
 
+.dropdown-navbar {
+  position: relative;
+  display: inline-block;
+  cursor:pointer;
+}
+
+.dropdown-content-navbar {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 10px;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown-navbar:hover .dropdown-content-navbar {
+  display: block;
+}
+
 .form{
   -webkit-box-shadow: 10px 9px 27px 1px rgba(0,0,0,0.93); 
   box-shadow: 10px 9px 27px 1px rgba(0,0,0,0.93);
