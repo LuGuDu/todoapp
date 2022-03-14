@@ -45,7 +45,8 @@ class TaskController < ApplicationController
         @tasks = []
         @allTasks = Task.all
         @allTasks.each do |task|
-            if task.description.include? params[:search]
+            #search by title and description
+            if (task.title.include? params[:search]) || (task.description.include? params[:search]) 
                 @tasks << task
             end
         end
