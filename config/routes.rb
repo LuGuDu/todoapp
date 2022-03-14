@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root "application#index"
 
   get 'task/list_all', to: "task#list_all"
-  get 'task', to: "task#list"
+  get 'task', action: :list, controller: 'task'
   get 'task/list_today', to: "task#list_today"
   get 'task/create', to: "task#create_form"
   post 'task/create', to: "task#create"
