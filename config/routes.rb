@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root "application#index"
 
   get 'task/list_all', to: "task#list_all"
-  get 'task', action: :list, controller: 'task'
+  get 'task', to: "task#list"
   get 'task/list_today', to: "task#list_today"
   get 'task/create', to: "task#create_form"
   post 'task/create', to: "task#create"
@@ -26,6 +26,6 @@ Rails.application.routes.draw do
   post 'project/update', to: "project#update" #CHANGE TO PATCH ON FUTURE
 
 
- get '*path', to: "application#page_not_found"
+  get '*path', to: "application#page_not_found"
 
 end
