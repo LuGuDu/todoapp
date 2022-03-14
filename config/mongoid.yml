@@ -179,4 +179,12 @@ test:
         max_pool_size: 1
 
 
+production:
+  clients:
+    default:
+      uri: mongodb+srv://admin:EcDRYOQVeWX42cPU@clusterlugudu.smne6.mongodb.net/todoapp_development
+
+      options:
+        server_selection_timeout: 5
+
 
