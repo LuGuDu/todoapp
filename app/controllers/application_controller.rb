@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::Base
 
     def index
-      redirect_to '/task'
+      @tasks = Task.where(:done => 'false')
+      respond_to do |format|
+          format.html { render template: 'tasks/list', layout: 'layouts/application', status: 200}
+      end
+      #redirect_to '/task'
     end
 
     def page_not_found
