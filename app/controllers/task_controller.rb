@@ -55,10 +55,6 @@ class TaskController < ApplicationController
         end
     end
 
-    def list_by_project
-        @tasks = Task.find(params[:projectId])
-    end
-
     def create_form
         @projects = Project.all
 
