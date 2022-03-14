@@ -32,14 +32,14 @@ development:
         #     - use: web
 
         #The name of the user for authentication.
-         user: 'admin'
+         #user: 'admin'
 
          #The password of the user for authentication.
-         password: 'EcDRYOQVeWX42cPU'
+        # password: 'EcDRYOQVeWX42cPU'
 
         # The user's database roles.
-         roles:
-           - 'admin'
+         #roles:
+         #  - 'admin'
 
         # Change the default authentication mechanism. Valid options are: :scram,
         # :mongodb_cr, :mongodb_x509, and :plain. Note that all authentication
@@ -178,4 +178,10 @@ test:
           mode: :primary
         max_pool_size: 1
 
+production:
+  sessions:
+    default:
+      database: todoapp_development
+        hosts:
+          - localhost:27017
 
