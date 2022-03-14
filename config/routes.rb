@@ -24,6 +24,6 @@ Rails.application.routes.draw do
   post 'project/update', to: "project#update" #CHANGE TO PATCH ON FUTURE
 
 
-  get '*path', to: "application#page_not_found"
+  #get '*path', to: "application#page_not_found"
 
 end
