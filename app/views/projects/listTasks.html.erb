@@ -1,17 +1,26 @@
-<div>
+<div class="title">
 <h1>TASKS OF <%= @project.title %></h1>
 </div>
 
-<div>
+<div class="list">
     <ul>
     <% @tasks.each do |task| %> 
     <% if task.done == false %>
         <li>
             <div>
-            <%= task.title %>  
-            <%= button_to 'Done', "/task/check/#{task.id}", method: :patch %>  
-            <%= button_to 'Delete', "/task/delete/#{task.id}", method: :delete %>
-            <%= button_to 'Update', "/task/update/#{task.id}", method: :get %>
+                <div style="float: left; width: auto;"> 
+                <%= button_to 'Done', "/task/check/#{task.id}", method: :patch, :class => 'btnList' %>
+                </div>
+                &nbsp;  
+                <%= task.title %>
+                
+                <div class="dropdown">
+                    <span>...</span>
+                    <div class="dropdown-content">
+                        <%= button_to 'Delete', "/task/delete/#{task.id}", method: :delete, :class => 'btnList' %>
+                        <%= button_to 'Update', "/task/update/#{task.id}", method: :get, :class => 'btnList' %>
+                    </div>
+                </div>
             </div>
         </li>
         <% end%>

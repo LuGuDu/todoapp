@@ -79,7 +79,7 @@ class TaskController < ApplicationController
         @date = @task.dateDeadLine.strftime('%Y-%m-%d')
         puts(@task.dateDeadLine)
 
-        if @task.project_id != 'none'
+        if @task.project_id != 'none' && @task.project_id.present?
             @projectTask = Project.find(@task.project_id)
         end
 

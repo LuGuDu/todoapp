@@ -1,21 +1,29 @@
 <div>
 <form action="/task/create" method="get">
-    <input type="submit" value="Create Task" 
+    <input class="btn" type="submit" value="New Task" 
          name="Submit" id="frm1_submit" />
 </form>
 </div>
 
-<div>
+<div class="list">
     <ul>
     <% @tasks.each do |task| %> 
-        <li>
-            <div><%= task.title %>
-            <% if task.done == false %>
-                <%= button_to 'Done', "/task/check/#{task.id}", method: :patch %>
-            <% end%>
-            <%= button_to 'Delete', "/task/delete/#{task.id}", method: :delete %>
-            <%= button_to 'Update', "/task/update/#{task.id}", method: :get %>
+        <li>  
+             <div style="float: left; width: auto;">   
+                <% if task.done == false %>
+                    <%= button_to 'Done', "/task/check/#{task.id}", method: :patch, :class => 'btnList'  %>
+                <% end%> 
             </div>
+            &nbsp;
+            <%= task.title %>                          
+            <div class="dropdown">
+                <span>...</span>
+                <div class="dropdown-content">
+                    <%= button_to 'Delete', "/task/delete/#{task.id}", method: :delete, :class => 'btnList' %>
+                    <%= button_to 'Update', "/task/update/#{task.id}", method: :get, :class => 'btnList' %>
+                </div>
+            </div>
+
         </li>
     <% end %>
     </ul>

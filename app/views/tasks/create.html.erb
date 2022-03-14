@@ -1,28 +1,30 @@
-<div>
+<div class="title">
 <h1>CREATE NEW TASK </h1>
 </div>
 
-<form action="/task/create" method='post' value='task'>
+<div class="form">
+  <form action="/task/create" method='post' value='task'>
 
-  <label for="fname">Title:</label><br>
-  <input type="text" id="title" name="title" value="Title"><br>
+    <label for="fname">Title:</label><br>
+    <input type="text" id="title" name="title" placeholder="Title"><br>
 
-  <label for="lname">Description:</label><br>
-  <input type="text" id="description" name="description" value="Description"><br>
+    <label for="lname">Description:</label><br>
+    <input type="text" id="description" name="description" placeholder="Description"><br>
 
-  <label for="lname">Priority:</label><br>
-  <input type="number" id="priority" name="priority" value="1" min="1" max="4"><br>
+    <label for="lname">Priority:</label><br>
+    <input type="number" id="priority" name="priority" value="1" min="1" max="4"><br>
 
-  <label for="lname">DeadLine:</label><br>
-  <input type="date" id="deadline" name="deadline"><br>
+    <label for="lname">DeadLine:</label><br>
+    <input type="date" id="deadline" name="deadline"><br>
 
-  <label for="lname">Project:</label><br>
-  <select name="project_id">
-    <option value="none" selected>None</option>
-    <% @projects.each do |project| %> 
-      <option value=<%= project.id %>><%= project.title%></option>
-    <% end %>
-  </select>
-  <br><br>
-  <input type="submit" value="Submit">
-</form> 
+    <label for="lname">Project:</label><br>
+    <select name="project_id">
+      <option value="none" selected>None</option>
+      <% @projects.each do |project| %> 
+        <option value=<%= project.id %>><%= project.title%></option>
+      <% end %>
+    </select>
+    <br><br>
+    <input class="btn" type="submit" value="Create">
+  </form> 
+</div>
