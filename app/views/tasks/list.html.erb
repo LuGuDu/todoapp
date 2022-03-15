@@ -9,7 +9,7 @@
     <ul>
     <% @tasks.each do |task| %> 
         <li>  
-             <div style="float: left; width: auto;">   
+             <div style="float: left">   
                 <% if task.done == false %>
                     <%= button_to 'Done', "/task/check/#{task.id}", method: :patch, :class => 'btnList'  %>
                 <% end%> 
