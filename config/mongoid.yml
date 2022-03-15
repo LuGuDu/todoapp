@@ -31,15 +31,15 @@ development:
         #   tag_sets:
         #     - use: web
 
-        # The name of the user for authentication.
-        # user: 'user'
+        #The name of the user for authentication.
+         #user: 'admin'
 
-        # The password of the user for authentication.
-        # password: 'password'
+         #The password of the user for authentication.
+        # password: 'EcDRYOQVeWX42cPU'
 
         # The user's database roles.
-        # roles:
-        #   - 'dbOwner'
+         #roles:
+         #  - 'admin'
 
         # Change the default authentication mechanism. Valid options are: :scram,
         # :mongodb_cr, :mongodb_x509, and :plain. Note that all authentication
@@ -177,3 +177,13 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+
+production:
+  clients:
+    default:
+      uri: mongodb+srv://admin:EcDRYOQVeWX42cPU@clusterlugudu.smne6.mongodb.net/todoapp_development
+
+      options:
+        server_selection_timeout: 5
+
+

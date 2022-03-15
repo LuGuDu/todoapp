@@ -1,0 +1,16 @@
+<div class="title">
+<h1>UPDATE -<%= @project.title %>- PROJECT</h1>
+</div>
+
+<div class="form">
+  <form action="/project/update/" method='post' value='project'>
+
+    <input style="display:none" type="hidden" id="id" name="id" value=<%= @project.id %> >
+
+    <label for="fname">Title:</label><br>
+    <input type="text" id="title" name="title" value=<%= @project.title %> ><br>
+    <label for="lname">Description:</label><br>
+    <input type="text" id="description" name="description" value=<%= @project.description %> ><br><br>
+    <input class="btn" type="submit" value="Update">
+  </form> 
+</div>

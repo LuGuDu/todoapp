@@ -1,0 +1,25 @@
+<div>
+<form action="/project/create" method="get">
+    <input class="btn" type="submit" value="Create Project" 
+         name="Submit" id="frm1_submit" />
+</form>
+</div>
+
+<div class="list">
+    <ul>
+    <% @projects.each do |project| %> 
+        <li>
+            <div>
+                <%= link_to project.title, "/project/#{project.id}", method: :get %>
+                <div class="dropdown">
+                    <span>...</span>
+                    <div class="dropdown-content">
+                        <%= button_to 'Delete', "/project/delete/#{project.id}", method: :delete, :class => 'btnList' %>
+                        <%= button_to 'Update', "/project/update/#{project.id}", method: :get, :class => 'btnList' %>
+                    </div>
+                </div>
+            </div>
+        </li>
+    <% end %>
+    </ul>
+</div>

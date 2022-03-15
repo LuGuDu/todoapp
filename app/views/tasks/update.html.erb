@@ -1,0 +1,36 @@
+<div class="title">
+<h1>UPDATE -<%= @task.title %>- TASK</h1>
+</div>
+
+<div class="form">
+  <form action="/task/update/" method='post' value='project'>
+
+    <input style="display:none" type="hidden" id="id" name="id" value=<%= @task.id %> >
+
+    <label for="fname">Title:</label><br>
+    <input type="text" id="title" name="title" value=<%= @task.title %>><br>
+
+    <label for="lname">Description:</label><br>
+    <input type="text" id="description" name="description" value=<%= @task.description %>><br>
+
+    <label for="lname">Priority:</label><br>
+    <input type="number" id="priority" name="priority" value=<%= @task.priority %> min="1" max="4"><br>
+
+    <label for="lname">DeadLine:</label><br>
+    <input type="date" id="deadline" name="deadline" value=<%= @date %>><br>
+
+    <label for="lname">Project:</label><br>
+    <select name="project_id">
+      <% if @projectTask.present? %>
+        <option value=<%= @projectTask.id %> selected><%= @projectTask.title %></option>
+      <% end %>
+      <option value="none">None</option>
+      <% @projects.each do |project| %> 
+        <option value=<%= project.id %>><%= project.title%></option>
+      <% end %>
+    </select>
+    <br><br>
+    <input class="btn" type="submit" value="Update">
+  </form> 
+</div>
+
