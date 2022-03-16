@@ -1,29 +1,31 @@
-<div class="title">
-<h1>TASKS OF <%= @project.title %></h1>
+
+<div class="container">
+   <div class="items">
+            <div class="items-head">
+            <p style="text-align:center">TASKS OF <%= @project.title %></p>
+            </div>
+        <div class="items-body">
+            <div class="items-body-content">
+                <% @tasks.each do |task| %> 
+                
+                        <div>
+                            <% if task.done == false %>
+                                <%= button_to 'Done', "/task/check/#{task.id}", method: :patch, :class => 'btnList' %>
+                                <% end%>
+    
+                                <%= task.title %>
+                        </div>
+                            <div class="dropdown">
+                                <span class="list_icon">...</span>
+                                <div class="dropdown-content">
+                                    <%= button_to 'Delete', "/task/delete/#{task.id}", method: :delete, :class => 'btnList' %>
+                                    <%= button_to 'Update', "/task/update/#{task.id}", method: :get, :class => 'btnList' %>
+                                </div>
+                            </div>
+            </div>
+        
+            <% end %>
+        </div>
+    </div>
 </div>
 
-<div class="list">
-    <ul>
-    <% @tasks.each do |task| %> 
-    <% if task.done == false %>
-        <li>
-            <div>
-                <div style="float: left; width: auto;"> 
-                <%= button_to 'Done', "/task/check/#{task.id}", method: :patch, :class => 'btnList' %>
-                </div>
-                &nbsp;  
-                <%= task.title %>
-                
-                <div class="dropdown">
-                    <span>...</span>
-                    <div class="dropdown-content">
-                        <%= button_to 'Delete', "/task/delete/#{task.id}", method: :delete, :class => 'btnList' %>
-                        <%= button_to 'Update', "/task/update/#{task.id}", method: :get, :class => 'btnList' %>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <% end%>
-    <% end %>
-    </ul>
-</div>

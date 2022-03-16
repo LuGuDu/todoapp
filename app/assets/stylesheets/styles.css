@@ -459,7 +459,7 @@ img {
   
   display: grid;
   place-items: center;
-  /*background-color: #128CFC; */
+  background-color: #128CFC; 
 }
 
 .items {
@@ -530,9 +530,20 @@ img {
   width: auto ;
   height : auto ; 
   display:inline-block;
-  background-color:yellow;
   color:black;
   padding:.5rem;
   font-size:1rem;
   margin:0;
+}
+.container_flex{
+  display: flex;
+  flex-direction: wrap;
+}
+.click_button{
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: 10px;
+}
+.list_icon{
+  font-size: large;
 }

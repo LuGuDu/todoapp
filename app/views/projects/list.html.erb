@@ -1,25 +1,30 @@
-<div>
-<form action="/project/create" method="get">
-    <input class="btn" type="submit" value="Create Project" 
-         name="Submit" id="frm1_submit" />
-</form>
-</div>
 
-<div class="list">
-    <ul>
-    <% @projects.each do |project| %> 
-        <li>
-            <div>
-                <%= link_to project.title, "/project/#{project.id}", method: :get %>
-                <div class="dropdown">
-                    <span>...</span>
-                    <div class="dropdown-content">
-                        <%= button_to 'Delete', "/project/delete/#{project.id}", method: :delete, :class => 'btnList' %>
-                        <%= button_to 'Update', "/project/update/#{project.id}", method: :get, :class => 'btnList' %>
+<div class= "container"> 
+    <div class="items">
+        <div class="items-head">
+            <div class="container_flex">
+                    <p>Project List</p>
+                    <div class="click_button">
+                            <form action="/project/create" method="get">
+                            <input class="btn" type="submit" value="Create Project" 
+                                name="Submit" id="frm1_submit" />
+                            </form>
                     </div>
-                </div>
-            </div>
-        </li>
-    <% end %>
-    </ul>
+            </div> 
+        </div>
+                    <div class="items-body">
+                            <div class="items-body-content">
+                            <% @projects.each do |project| %> 
+                                <%= link_to project.title, "/project/#{project.id}", method: :get %>                       
+                                        <div class="dropdown">
+                                            <span class="list_icon"><b>...</b></span>
+                                            <div class="dropdown-content">
+                                            <%= button_to 'Delete', "/project/delete/#{project.id}", method: :delete, :class => 'btnList' %>
+                                            <%= button_to 'Update', "/project/update/#{project.id}", method: :get, :class => 'btnList' %>
+                                        </div>
+                            </div> 
+                    </div>
+       
+                                 <% end %>
+    </div>
 </div>
