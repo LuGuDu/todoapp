@@ -5,27 +5,34 @@
          name="Submit" id="frm1_submit" />
 </form>
 </div>
-
-<div class="list">
-    <ul>
-    <% @tasks.each do |task| %> 
-        <li>  
+<div class= "container"> 
+<div class="items">
+<div class="items-head">
+  <p>ToDo List</p>
+</div>
+<div class="items-body">
+<div class="items-body-content">
+     <% @tasks.each do |task| %> 
+        
              <div style="float: left">   
                 <% if task.done == false %>
                     <%= button_to 'Done', "/task/check/#{task.id}", method: :patch, :class => 'btnList'  %>
                 <% end%> 
-            </div>
+        
             &nbsp;
-            <%= task.title %>                          
+            <%= task.title %>                        
             <div class="dropdown">
                 <span>...</span>
                 <div class="dropdown-content">
                     <%= button_to 'Delete', "/task/delete/#{task.id}", method: :delete, :class => 'btnList' %>
                     <%= button_to 'Update', "/task/update/#{task.id}", method: :get, :class => 'btnList' %>
                 </div>
+            </div> 
             </div>
-
-        </li>
+            <br>
+       
     <% end %>
-    </ul>
+    </div>
+    </div>
+  </div>
 </div>
