@@ -27,6 +27,15 @@ class TaskController < ApplicationController
         else
         end
     end
+    
+    def uncheck
+        @task = Task.find(params[:id])
+        @task.done = false
+        if @task.save
+            redirect_to "/task"
+        else
+        end
+    end
 
     def list_today
         @tasks = []

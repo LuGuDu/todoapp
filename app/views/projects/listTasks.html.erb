@@ -7,24 +7,24 @@
         <div class="items-body">
             <div class="items-body-content">
                 <% @tasks.each do |task| %> 
-                
-                        <div>
-                            <% if task.done == false %>
-                                <%= button_to 'Done', "/task/check/#{task.id}", method: :patch, :class => 'btnList' %>
-                                <% end%>
-    
-                                <%= task.title %>
+                    <div class="list-element">
+                        <% if task.done == false %>
+                            <%= button_to 'Done', "/task/check/#{task.id}", method: :patch, :class => 'btnList' %>
+                        <% end%>
+                        <% if task.done == true %>
+                            <%= button_to 'UnDone', "/task/uncheck/#{task.id}", method: :patch, :class => 'btnList' %>
+                        <% end%>
+                        <%= task.title %>
+                    </div>
+                    <div class="dropdown">
+                        <span class="list_icon">...</span>
+                        <div class="dropdown-content">
+                            <%= button_to 'Delete', "/task/delete/#{task.id}", method: :delete, :class => 'btnList' %>
+                            <%= button_to 'Update', "/task/update/#{task.id}", method: :get, :class => 'btnList' %>
                         </div>
-                            <div class="dropdown">
-                                <span class="list_icon">...</span>
-                                <div class="dropdown-content">
-                                    <%= button_to 'Delete', "/task/delete/#{task.id}", method: :delete, :class => 'btnList' %>
-                                    <%= button_to 'Update', "/task/update/#{task.id}", method: :get, :class => 'btnList' %>
-                                </div>
-                            </div>
+                    </div>
+                <% end %>
             </div>
-        
-            <% end %>
         </div>
     </div>
 </div>
