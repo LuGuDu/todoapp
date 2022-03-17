@@ -16,8 +16,11 @@
                 <% @tasks.each do |task| %> 
             
                     <div>   
-                            <% if task.done == false %>
-                                <%= button_to 'Done', "/task/check/#{task.id}", method: :patch, :class => 'btnList'  %>
+                        <% if task.done == false %>
+                            <%= button_to 'Done', "/task/check/#{task.id}", method: :patch, :class => 'btnList'  %>
+                        <% end%>
+                        <% if task.done == true %>
+                            <%= button_to 'UnDone', "/task/uncheck/#{task.id}", method: :patch, :class => 'btnList'  %>
                         <% end%>
                         <%= task.title %>  
                     </div>                   
