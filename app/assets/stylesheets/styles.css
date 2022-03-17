@@ -366,10 +366,12 @@ img {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
+  min-width: auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 12px 16px;
   z-index: 1;
+  border-radius: 15px;
+  border: 1px solid #0B5AA2;
 }
 
 .dropdown:hover .dropdown-content {
@@ -444,12 +446,6 @@ img {
   text-decoration: none;
 }
 
-/* List Layout */
-
-* {
-  box-sizing: border-radius;
-  font-family: 'Rubik', sans-serif;
-}
 .container {
   border: 1px solid black;
   
@@ -467,6 +463,7 @@ img {
   background: #fffffe;
   box-shadow: 0 3px 6px rgba(black,0.16), 0 3px 6px rgba(black,0.23);
   border-top: 10px solid #0B5AA2;
+  
 }
 
 .items-head p{
@@ -487,7 +484,7 @@ img {
   padding: 10px;
   margin: 10px;
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 10px;  
 }
 
 .items-body-content {
@@ -499,9 +496,7 @@ img {
   /*background-color: lightblue;*/  
   font-size: 13px;
   grid-gap: 10px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  
+  border: 1px solid transparent;    
 }
 
 .items-body-content:hover {
@@ -515,15 +510,6 @@ img {
   color: #0B5AA2;
   font-weight: bold;
   animation: icon 1.5s infinite forwards;
-}
-
-@keyframes icon {
-  0%,100%{
-    transform: translate(0px);
-  }
-  50% {
-    transform: translate(3px);
-  }
 }
 
 .button_to{
@@ -544,6 +530,15 @@ img {
   margin-left: auto;
   margin-right: 10px;
 }
-.list_icon{
-  font-size: large;
+
+.list-element{
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: auto;
+}
+
+.list-element:hover{
+  background-color: #d3d9dd85;
+  border-radius: 15px;
+  border: 1px solid #0B5AA2;
 }
