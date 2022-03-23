@@ -1,0 +1,27 @@
+<form action="signup" method="post" value="user">
+    <div class="form-group">
+       <label for="fname">UserName:</label><br/>
+      <input type="text" id="username" name="username" placeholder="username">
+    </div>
+     
+    <div class="form-group">
+    <label for="fname">Email:</label><br/>
+      <input type="email" id="Email" name="Email" placeholder="Email Address">
+    </div>
+     
+    <div class="form-group">
+    <label for="fname">PassWord:</label><br/>
+    <input type="password" id="Password" name="PassWord" placeholder="PassWord">
+    </div>
+     
+    <div class="form-group">
+    <input class="btn" type="submit" value="Create" onClick="pr()">
+    </div>
+    Name: <span id="result"></span>
+
+    </form>
+  <script>
+    function pr() {
+      document.getElementById("result").innerHTML = document.getElementById('username').value + " " + document.getElementById('Email').value + " " + document.getElementById('PassWord').value;
+    }
+  </script>
