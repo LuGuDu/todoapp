@@ -21,14 +21,29 @@
                 <!--<img src="img/perfil.jpg" alt="" class="header__img">-->
 
                 <a href="/" class="header__logo">TodoApp</a>
-
+                <% if logged_in? %>
                 <form action="/task/search/" method='get' value='project'>
                 <div class="header__search">
                     <input type="search" placeholder="Search" name="search" class="header__input">
                     <button class='bx bx-search header__icon'></button>       
                 </div>
                 </form>
-    
+                <% end %>
+
+                <% if !logged_in? %>
+                <div class="containter">
+                <a href="login" class="nav__link nav__login">
+                    <i class='bx bx-log-in nav__icon' ></i>
+                    <span class="nav__name">Login</span>
+                </a>
+                <a href="signup">
+                <span>SignUp</span></a>
+                </div>
+                <% else %>
+                <div><%= current_user.username %></div>
+                <% end %>
+
+                <% if logged_in? %>
                 <div class="header__toggle">
                     <div class="dropdown-navbar" id="header-toggle">
                         <span class='bx bx-menu'></span>
@@ -55,9 +70,10 @@
                         </div>
                     </div>
                 </div>
+                <% end %>
             </div>
         </header>
-
+        <% if logged_in? %>
         <!--========== NAV ==========-->
         <div class="nav" id="navbar">
             <nav class="nav__container">
@@ -90,20 +106,21 @@
                                 <i class='bx bx-task nav__icon' ></i>
                                 <span class="nav__name">All tasks</span>
                             </a>
-                        </div>-->
+                        </div>
                     </div> 
                 </div>
-
-                <!--<a href="#" class="nav__link nav__logout">
+                <% if logged_in? %>
+                <a href="logout" class="nav__link nav__logout">
                     <i class='bx bx-log-out nav__icon' ></i>
                     <span class="nav__name">Log Out</span>
-                </a>-->
+                </a>
+                <% end %>
             </nav>
         </div>
+        <% end %>
         <!--========== CONTENTS ==========-->
         <main>
             <%= yield %>
-
         </main>
 
         <!--========== MAIN JS ==========-->

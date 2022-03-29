@@ -17,6 +17,14 @@ Rails.application.routes.draw do
   get 'task/update/:id', to:"task#update_form"
   post 'task/update', to: "task#update" #CHANGE TO PATCH ON FUTURE
   get 'task/search', to: "task#read_by_tag"
+  
+  get 'signup', to: "users#new"
+  post 'signup', to: "users#create"
+  get 'login', to: "sessions#new"
+  post 'login', to: "sessions#create"
+  get 'logout', to: "sessions#destroy"
+  delete 'logout', to: "sessions#destroy"
+  resources :users, except: [:new]
 
   get 'project', to: "project#list"
   get 'project/create', to: "project#create_form"
