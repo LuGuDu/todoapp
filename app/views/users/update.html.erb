@@ -1,0 +1,28 @@
+<div class="container">
+
+<div class="items">
+<div class="items-head">
+<p style="text-align : center;">UPDATE: <b style="color:red;"><%= @user.username %></b></p>
+</div>
+<div class="items-body">
+  <form action="/user/update/" method='post' value='project'>
+
+    <input style="display:none" type="hidden" id="id" name="id" value=<%= @user.id %> >
+
+    <label for="fname">UserName:</label><br>
+    <input type="text" id="username" name="username"  value=<%= @user.username %>><br>
+  
+    <label for="fname">Email:</label><br>
+    <input type="email" id="email" name="email" value=<%= @user.email %>><br>    
+
+    <label for="fname">New Password:</label><br>
+    <input type="text" id="password" name="password" value=<%= @user.password %>><br>
+
+    <br><br>
+
+    <input class="btn" type="submit" value="Update">
+  </form> 
+  </div>
+</div>
+
+</div>
