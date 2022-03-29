@@ -20,25 +20,29 @@
             <div class="header__container">
                 <!--<img src="img/perfil.jpg" alt="" class="header__img">-->
 
-                <a href="/" class="header__logo">TodoApp</a>
                 <% if logged_in? %>
+                <a href="/task" class="header__logo">TodoApp</a>
                 <form action="/task/search/" method='get' value='project'>
                 <div class="header__search">
                     <input type="search" placeholder="Search" name="search" class="header__input">
                     <button class='bx bx-search header__icon'></button>       
                 </div>
                 </form>
+                <% else %>
+                <a href="/login" class="header__logo">TodoApp</a>
                 <% end %>
 
                 <% if !logged_in? %>
                 <div class="containter">
-                <a href="login" class="nav__link nav__login">
-                    <i class='bx bx-log-in nav__icon' ></i>
-                    <span class="nav__name">Login</span>
+                <a href="login">
+                <span>Login</span>
                 </a>
+
                 <a href="signup">
-                <span>SignUp</span></a>
+                <span>SignUp</span>
+                </a>
                 </div>
+
                 <% else %>
                 <div><%= current_user.username %></div>
                 <% end %>
