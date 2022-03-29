@@ -10,6 +10,7 @@ class UsersController < ApplicationController
         @user.email=params[:email]
         @user.password=params[:password]
         @user.password_confirmation=params[:password_confirmation]
+        @user.role=params[:role]
         if @user.save
           session[:user_id]=@user.id
           flash[:notice] = "User created."
