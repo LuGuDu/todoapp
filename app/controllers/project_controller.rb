@@ -1,8 +1,10 @@
 class ProjectController < ApplicationController
     protect_from_forgery with: :null_session
+    skip_before_action :verify_authenticity_token
 
     def list
-        @projects = Project.all
+        @projects = Project.where(:user_id => session[:user_id]["$oid"])
+
         respond_to do |format|
             format.html { render template: 'projects/list', layout: 'layouts/application', status: 200}
         end
@@ -27,19 +29,16 @@ class ProjectController < ApplicationController
     end
 
     def create
-        @project = Project.new({"title"=> params["title"], "description"=> params["description"]}) 
+        @project = Project.new({"title"=> params["title"], "description"=> params["description"], "user_id"=> session[:user_id]["$oid"]}) 
         if @project.save
             redirect_to "/project"
-        else
-        end
-        
+        end 
     end
 
     def delete
         @project = Project.find(params[:id])
         if @project.destroy
             redirect_to "/project"
-        else
         end
     end
 
@@ -57,12 +56,6 @@ class ProjectController < ApplicationController
 
         if @project.save
             redirect_to "/project"
-        else
-            #redirect_to "/project"
         end
-    end
-
-    def project_params
-        params.require(:project).permit(:id, :title, :description)
     end
 end
