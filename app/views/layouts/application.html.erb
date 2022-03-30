@@ -112,11 +112,12 @@
                                 <i class='bx bx-task nav__icon' ></i>
                                 <span class="nav__name">All tasks</span>
                             </a>
-
+                            <% if current_user.role =="admin" %>
                             <a href="/user" class="nav__link">
                                 <i class='bx bx-user nav__icon' ></i>
                                 <span class="nav__name">Users</span>
                             </a>
+                            <% end %> 
                         </div>
                     </div> 
                 </div>
