@@ -9,4 +9,7 @@ class User
     field :role, type: String
 
     validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: 'Invalid email' }
+
+    has_many :task, dependent: :destroy
+    has_many :project, dependent: :destroy
 end

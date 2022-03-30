@@ -1,19 +1,21 @@
 class TaskController < ApplicationController
     protect_from_forgery with: :null_session
+    skip_before_action :verify_authenticity_token
 
     def read_one
         @task = Task.find(params[:projectId])
     end
 
     def list_all
-        @tasks = Task.all
+        @tasks = Task.where(:user_id => session[:user_id]["$oid"])
         respond_to do |format|
             format.html { render template: 'tasks/list', layout: 'layouts/application', status: 200}
         end
     end
 
     def list
-        @tasks = Task.where(:done => 'false')
+        @tasks = Task.where(:done => 'false', :user_id => session[:user_id]["$oid"])
+        
         respond_to do |format|
             format.html { render template: 'tasks/list', layout: 'layouts/application', status: 200}
         end
@@ -24,7 +26,6 @@ class TaskController < ApplicationController
         @task.done = true
         if @task.save
             redirect_to "/task"
-        else
         end
     end
     
@@ -33,13 +34,12 @@ class TaskController < ApplicationController
         @task.done = false
         if @task.save
             redirect_to "/task"
-        else
         end
     end
 
     def list_today
         @tasks = []
-        @allTasks = Task.all
+        @allTasks = Task.where(:user_id => session[:user_id]["$oid"])
         @allTasks.each do |task|
             if task.dateDeadLine <= DateTime.current
                 @tasks << task
@@ -52,7 +52,7 @@ class TaskController < ApplicationController
 
     def read_by_tag
         @tasks = []
-        @allTasks = Task.all
+        @allTasks = Task.where(:user_id => session[:user_id]["$oid"])
         @allTasks.each do |task|
             #search by title and description
             if (task.title.include? params[:search]) || (task.description.include? params[:search]) 
@@ -65,7 +65,7 @@ class TaskController < ApplicationController
     end
 
     def create_form
-        @projects = Project.all
+        @projects = Project.where(:user_id => session[:user_id]["$oid"])
 
         respond_to do |format|
             format.html { render template: 'tasks/create', layout: 'layouts/application', status: 200}
@@ -80,6 +80,7 @@ class TaskController < ApplicationController
         @task.dateCreation = DateTime.current
         @task.dateDeadLine = DateTime.strptime(params[:deadline], '%Y-%m-%d')
         @task.done = false
+        @task.user_id = session[:user_id]["$oid"]
 
         if params[:project_id] != 'none'
             @task.project_id = params[:project_id]
@@ -95,7 +96,7 @@ class TaskController < ApplicationController
     end
 
     def update_form
-        @projects = Project.all
+        @projects = Project.where(:user_id => session[:user_id]["$oid"])
         @task = Task.find(params[:id])
         @date = @task.dateDeadLine.strftime('%Y-%m-%d')
 
