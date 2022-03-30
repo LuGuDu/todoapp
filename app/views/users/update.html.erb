@@ -15,6 +15,16 @@
     <label for="fname">Email:</label><br>
     <input type="email" id="email" name="email" value=<%= @user.email %>><br>    
 
+    <label for="lname">Role:</label><br>
+    <select name="role">
+    <option value=<%= @user.role%> selected><%= @user.role%></option>
+      <% if @user.role == "admin" %>
+        <option value="normal">normal</option>
+      <% else %>
+        <option value="admin">admin</option>
+      <% end%>
+    </select><br>
+
     <label for="fname">New Password:</label><br>
     <input type="text" id="password" name="password" value=<%= @user.password %>><br>
 

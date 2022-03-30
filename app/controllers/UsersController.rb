@@ -32,6 +32,7 @@ class UsersController < ApplicationController
     @user.username = params[:username]
     @user.email = params[:email]
     @user.password = params[:password]
+    @user.role = params[:role]
 
     if @user.save
         redirect_to "/user"
@@ -50,6 +51,7 @@ class UsersController < ApplicationController
     @user = User.new
     @user.username=params[:username]
     @user.email=params[:email]
+    @user.role=params[:role]
     @user.password=params[:password]
     @user.password_confirmation=params[:password_confirmation]
 
@@ -66,6 +68,7 @@ class UsersController < ApplicationController
     @user = User.new
     @user.username=params[:username]
     @user.email=params[:email]
+    @user.role="normal"
     @user.password=params[:password]
     @user.password_confirmation=params[:password_confirmation]
     
