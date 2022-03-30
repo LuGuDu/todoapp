@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
     def index
-      redirect_to '/task'
+      redirect_to '/login'
     end
 
     def page_not_found
@@ -16,6 +16,13 @@ class ApplicationController < ActionController::Base
           format.all  { render nothing: true, status: 500}
         end
     end
+
+    def access_error
+      respond_to do |format|
+        format.html { render template: 'errors/internal_server_error', layout: 'layouts/application', status: 500 }
+        format.all  { render nothing: true, status: 500}
+      end
+  end
     
     helper_method :current_user, :logged_in?
     def current_user

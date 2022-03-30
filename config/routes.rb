@@ -15,9 +15,16 @@ Rails.application.routes.draw do
   patch 'task/uncheck/:id', to:"task#uncheck"
   delete 'task/delete/:id', to:"task#delete"
   get 'task/update/:id', to:"task#update_form"
-  post 'task/update', to: "task#update" #CHANGE TO PATCH ON FUTURE
+  post 'task/update', to: "task#update"
   get 'task/search', to: "task#read_by_tag"
   
+  get 'user', to: "users#list"
+  get 'user/create', to: "users#create_form"
+  post 'user/create', to: "users#create_from_admin"
+  delete 'user/delete/:id', to: "users#delete"
+  get 'user/update/:id', to: "users#update_form"
+  post 'user/update', to: "users#update"
+
   get 'signup', to: "users#new"
   post 'signup', to: "users#create"
   get 'login', to: "sessions#new"
@@ -32,7 +39,7 @@ Rails.application.routes.draw do
   get 'project/:id', to: "project#task_list"
   delete 'project/delete/:id', to: "project#delete"
   get 'project/update/:id', to: "project#update_form"
-  post 'project/update', to: "project#update" #CHANGE TO PATCH ON FUTURE
+  post 'project/update', to: "project#update"
 
 
   get '*path', to: "application#page_not_found"
