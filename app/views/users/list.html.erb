@@ -1,0 +1,30 @@
+<div class= "container "> 
+    <div class="items">
+            <div class="items-head">
+                <div class="container_flex">
+                        <p>User List</p>
+                        <div class="click_button">
+                            <form action="/user/create" method="get">
+                                <input class="btn" type="submit" value="New User" name="Submit" id="frm1_submit" />
+                            </form>
+                        </div>
+                </div> 
+            </div>
+        <div class="items-body">
+            <div class="items-body-content">
+                <% @users.each do |user| %>
+                    <div class="list-element">
+                        <%= user.email %>   
+                    </div>                   
+                    <div class="dropdown">
+                        <span class="list_icon"><b>...</b></span>
+                        <div class="dropdown-content">
+                            <%= button_to 'Delete', "/user/delete/#{user.id}", method: :delete, :class => 'btnList' %>
+                            <%= button_to 'Update', "/user/update/#{user.id}", method: :get, :class => 'btnList' %>
+                        </div>
+                    </div> 
+                <% end %>
+             </div>
+        </div>
+    </div>
+</div>
