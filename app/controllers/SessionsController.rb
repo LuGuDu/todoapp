@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
+      session[:role] = user.role
       flash[:notice] = "Logged in successfully."
       redirect_to '/task'
     else
@@ -18,6 +19,7 @@ class SessionsController < ApplicationController
    
   def destroy
     session[:user_id] = nil
+    session[:role]= nil
     flash[:notice] = "You have been logged out."
     redirect_to root_path
   end
