@@ -3,11 +3,11 @@ class UsersController < ApplicationController
   before_action :authenticated
   
   def authenticated
-    if session[:role] == "normal"
-    respond_to do |format|
-      format.html { render template: 'errors/no_permission', layout: 'layouts/application', status: 400}
+    if (session[:role] == "normal") or (session[:role] == "")
+      respond_to do |format|
+        format.html { render template: 'errors/no_permission', layout: 'layouts/application', status: 400}
+      end
     end
-  end
   end 
 
   def new
