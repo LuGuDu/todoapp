@@ -1,12 +1,21 @@
 class TaskController < ApplicationController
     protect_from_forgery with: :null_session
     skip_before_action :verify_authenticity_token
-    before_action :authenticated, only: [:get_all] 
-  
+    before_action :authenticated
+    before_action :permission, only: [:get_all]
+
     def authenticated
-      if (session[:role] == "normal") or (session[:role] == "")
+        if (session[:role] == nil)
+          respond_to do |format|
+            format.html { render template: 'errors/no_authenticated', layout: 'layouts/application', status: 401}
+          end
+        end
+      end 
+  
+    def permission
+      if (session[:role] == "normal")
         respond_to do |format|
-          format.html { render template: 'errors/no_permission', layout: 'layouts/application', status: 400}
+          format.html { render template: 'errors/no_permission', layout: 'layouts/application', status: 403}
         end
       end
     end 
