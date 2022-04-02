@@ -1,13 +1,22 @@
 class UsersController < ApplicationController
   protect_from_forgery with: :null_session
+  before_action :permission
   before_action :authenticated
-  
+
   def authenticated
-    if session[:role] == "normal"
-    respond_to do |format|
-      format.html { render template: 'errors/no_permission', layout: 'layouts/application', status: 400}
+      if (session[:role] == nil)
+        respond_to do |format|
+          format.html { render template: 'errors/no_authenticated', layout: 'layouts/application', status: 401}
+        end
+      end
+    end 
+
+  def permission
+    if (session[:role] == "normal")
+      respond_to do |format|
+        format.html { render template: 'errors/no_permission', layout: 'layouts/application', status: 403}
+      end
     end
-  end
   end 
 
   def new

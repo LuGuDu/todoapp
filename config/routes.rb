@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   root "application#index"
 
+  get 'task/all', to: "task#get_all"
   get 'task/list_all', to: "task#list_all"
   get 'task', to: "task#list"
   get 'task/list_today', to: "task#list_today"
@@ -33,6 +34,7 @@ Rails.application.routes.draw do
   delete 'logout', to: "sessions#destroy"
   resources :users, except: [:new]
 
+  get 'project/all', to: "project#get_all"
   get 'project', to: "project#list"
   get 'project/create', to: "project#create_form"
   post 'project/create', to: "project#create"

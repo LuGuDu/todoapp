@@ -10,7 +10,12 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       session[:role] = user.role
       flash[:notice] = "Logged in successfully."
-      redirect_to '/task'
+
+      if user.role =="normal"
+        redirect_to '/task'
+      else
+        redirect_to '/task/all'
+      end
     else
       flash.now[:alert] = "There was something wrong with your login details."
       render 'new'

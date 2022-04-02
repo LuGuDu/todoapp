@@ -12,7 +12,19 @@
     <label for="fname">Title:</label><br>
     <input type="text" id="title" name="title" value=<%= @project.title %> ><br>
     <label for="lname">Description:</label><br>
-    <input type="text" id="description" name="description" value=<%= @project.description %> ><br><br>
+    <input type="text" id="description" name="description" value=<%= @project.description %> ><br>
+
+    <% if current_user.role =="admin" %>
+      <label for="lname">User:</label><br>
+      <select name="user_id">
+        <option value=<%= @user.id %> selected><%= @user.email %></option>
+        <% @users.each do |user| %> 
+          <option value=<%= user.id %>><%= user.email%></option>
+        <% end %>
+      </select>
+    <% end %>
+    <br><br>
+
     <input class="btn" type="submit" value="Update">
   </form> 
   </div>
