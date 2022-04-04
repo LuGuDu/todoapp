@@ -1,7 +1,34 @@
 class ProjectController < ApplicationController
     protect_from_forgery with: :null_session
+    skip_before_action :verify_authenticity_token
+    before_action :authenticated
+    before_action :permission, only: [:get_all]
+
+    def authenticated
+        if (session[:role] == nil)
+          respond_to do |format|
+            format.html { render template: 'errors/no_authenticated', layout: 'layouts/application', status: 401}
+          end
+        end
+      end 
+  
+    def permission
+      if (session[:role] == "normal")
+        respond_to do |format|
+          format.html { render template: 'errors/no_permission', layout: 'layouts/application', status: 403}
+        end
+      end
+    end 
 
     def list
+        @projects = Project.where(:user_id => session[:user_id]["$oid"])
+
+        respond_to do |format|
+            format.html { render template: 'projects/list', layout: 'layouts/application', status: 200}
+        end
+    end
+
+    def get_all
         @projects = Project.all
         respond_to do |format|
             format.html { render template: 'projects/list', layout: 'layouts/application', status: 200}
@@ -21,30 +48,45 @@ class ProjectController < ApplicationController
     end
     
     def create_form
+        @users = User.all
         respond_to do |format|
             format.html { render template: 'projects/create', layout: 'layouts/application', status: 200}
         end
     end
 
     def create
-        @project = Project.new({"title"=> params["title"], "description"=> params["description"]}) 
-        if @project.save
-            redirect_to "/project"
+        user_id = ""
+        if (session[:role] == "admin")
+            user_id = params["user_id"]
         else
+            user_id = session[:user_id]["$oid"]
         end
-        
+
+        @project = Project.new({"title"=> params["title"], "description"=> params["description"], "user_id"=> user_id}) 
+        if @project.save
+            if (session[:role] == "admin")
+                redirect_to "/project/all"
+            else
+                redirect_to "/project"
+            end
+        end 
     end
 
     def delete
         @project = Project.find(params[:id])
         if @project.destroy
-            redirect_to "/project"
-        else
+            if (session[:role] == "admin")
+                redirect_to "/project/all"
+            else
+                redirect_to "/project"
+            end
         end
     end
 
     def update_form
         @project = Project.find(params[:id])
+        @user = User.find(@project.user_id)
+        @users = User.all
         respond_to do |format|
             format.html { render template: 'projects/update', layout: 'layouts/application', status: 200}
         end
@@ -55,14 +97,18 @@ class ProjectController < ApplicationController
         @project.title = params[:title]
         @project.description = params[:description]
 
-        if @project.save
-            redirect_to "/project"
+        if (session[:role] == "admin")
+            @project.user_id = params["user_id"]
         else
-            #redirect_to "/project"
+            @project.user_id = session[:user_id]["$oid"]
         end
-    end
 
-    def project_params
-        params.require(:project).permit(:id, :title, :description)
+        if @project.save
+            if (session[:role] == "admin")
+                redirect_to "/project/all"
+            else
+                redirect_to "/project"
+            end
+        end
     end
 end

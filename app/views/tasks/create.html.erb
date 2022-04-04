@@ -1,8 +1,9 @@
-<div class="title">
-<h1>CREATE NEW TASK </h1>
-</div>
-
-<div class="form">
+<div class="container">
+<div class="items">
+  <div class="items-head">
+  <p style="text-align : center ;">CREATE NEW TASK <p>
+  </div>
+  <div class="items-body">
   <form action="/task/create" method='post' value='task'>
 
     <label for="fname">Title:</label><br>
@@ -23,8 +24,19 @@
       <% @projects.each do |project| %> 
         <option value=<%= project.id %>><%= project.title%></option>
       <% end %>
-    </select>
+    </select><br>
+
+    <% if current_user.role =="admin" %>
+      <label for="lname">User:</label><br>
+      <select name="user_id">
+        <% @users.each do |user| %> 
+          <option value=<%= user.id %>><%= user.email%></option>
+        <% end %>
+      </select>
+    <% end %>
     <br><br>
     <input class="btn" type="submit" value="Create">
   </form> 
+  </div>
+</div>
 </div>

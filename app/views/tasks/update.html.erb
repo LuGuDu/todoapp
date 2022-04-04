@@ -1,8 +1,10 @@
-<div class="title">
-<h1>UPDATE -<%= @task.title %>- TASK</h1>
-</div>
+<div class="container">
 
-<div class="form">
+<div class="items">
+<div class="items-head">
+<p style="text-align : center;">UPDATE -<b style="color:red;"><%= @task.title %></b>- TASK</p>
+</div>
+<div class="items-body">
   <form action="/task/update/" method='post' value='project'>
 
     <input style="display:none" type="hidden" id="id" name="id" value=<%= @task.id %> >
@@ -29,8 +31,22 @@
         <option value=<%= project.id %>><%= project.title%></option>
       <% end %>
     </select>
+    <br>
+    
+    <% if current_user.role =="admin" %>
+      <label for="lname">User:</label><br>
+      <select name="user_id">
+        <option value=<%= @user.id %> selected><%= @user.email %></option>
+        <% @users.each do |user| %> 
+          <option value=<%= user.id %>><%= user.email%></option>
+        <% end %>
+      </select>
+    <% end %>
     <br><br>
+
     <input class="btn" type="submit" value="Update">
   </form> 
+  </div>
 </div>
 
+</div>
