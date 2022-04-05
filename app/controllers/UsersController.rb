@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   protect_from_forgery with: :null_session
   before_action :permission
-  before_action :authenticated, except: [:new, :create]
+  before_action :authenticated, except: [:new, :create, :create_from_admin]
 
   def authenticated
       if (session[:role] == nil)
