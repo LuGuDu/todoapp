@@ -26,6 +26,12 @@
     <br><br>
 
     <input class="btn" type="submit" value="Update">
+    <% if current_user.role =="admin" %>
+      <a href="/project/all" class="btn">Cancel</a>
+    <% else %>
+      <a href="/project" class="btn">Cancel</a>
+    <% end%>
+    
   </form> 
   </div>
 </div>
