@@ -36,6 +36,11 @@
     <% end %>
     <br><br>
     <input class="btn" type="submit" value="Create">
+    <% if current_user.role =="admin" %>
+      <a href="/task/all" class="btn">Cancel</a>
+    <% else %>
+      <a href="/task" class="btn">Cancel</a>
+    <% end%>
   </form> 
   </div>
 </div>
