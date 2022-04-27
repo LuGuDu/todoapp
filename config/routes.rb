@@ -42,6 +42,9 @@ Rails.application.routes.draw do
   delete 'project/delete/:id', to: "project#delete"
   get 'project/update/:id', to: "project#update_form"
   post 'project/update', to: "project#update"
+  get 'project/invite/:id', to: "project#invite_form"
+  post 'project/invite', to: "project#invite"
+
 
 
   get '*path', to: "application#page_not_found"

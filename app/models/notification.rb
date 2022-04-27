@@ -1,4 +1,4 @@
-class User 
+class Notification 
     include Mongoid::Document
 
     field :origin_user_id, type: String
@@ -6,6 +6,6 @@ class User
     field :message, type: String
     field :state, type: String
 
-    has_one :project
+    belongs_to :project
 
 end

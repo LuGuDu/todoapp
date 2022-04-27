@@ -111,4 +111,30 @@ class ProjectController < ApplicationController
             end
         end
     end
+
+    def invite_form
+        @project = Project.find(params[:id])
+        @users = User.all
+        respond_to do |format|
+            format.html { render template: 'projects/invite', layout: 'layouts/application', status: 200}
+        end
+    end
+
+    def invite
+        @notification = Notification.new
+        @notification.project_id = params[:id]
+        @notification.origin_user_id = session[:user_id]["$oid"]
+        @notification.dest_user_id = params[:user_id]
+        @notification.message = "XX WANTS YOU TO ENTER TO THE XX PROJECT"
+        @notification.state = "WAITING"
+
+        if @notification.save
+            if (session[:role] == "admin")
+                redirect_to "/project/all"
+            else
+                redirect_to "/project"
+            end
+        end
+
+    end
 end

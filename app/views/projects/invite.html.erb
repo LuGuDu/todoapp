@@ -1,0 +1,32 @@
+
+<div class="container">
+<div class="items">
+<div class="items-head">
+<p style="text-align:center ; ">INVITE USERS TO-<b style="color : red" ><%= @project.title %></b>- PROJECT</p>
+</div>
+<div class="items-body">
+  <form action="/project/invite/" method='post' value='project'>
+
+    <input style="display:none" type="hidden" id="id" name="id" value=<%= @project.id %> >
+
+    <label for="lname">User:</label><br>
+    <select name="user_id">
+      <option value="none" selected>None</option>
+      <% @users.each do |user| %> 
+        <option value=<%= user.id %>><%= user.email%></option>
+      <% end %>
+    </select>
+
+    <br><br>
+
+    <input class="btn" type="submit" value="Invite">
+    <% if current_user.role =="admin" %>
+      <a href="/project/all" class="btn">Cancel</a>
+    <% else %>
+      <a href="/project" class="btn">Cancel</a>
+    <% end%>
+    
+  </form> 
+  </div>
+</div>
+</div>
