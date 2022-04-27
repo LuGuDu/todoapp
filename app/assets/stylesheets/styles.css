@@ -543,3 +543,9 @@ img {
   border-radius: 15px;
   border: 1px solid #0B5AA2;
 }
+
+.error{
+text-align: center;
+color : black  ;
+font-size: 17px;
+}
