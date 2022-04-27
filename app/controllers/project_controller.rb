@@ -125,7 +125,11 @@ class ProjectController < ApplicationController
         @notification.project_id = params[:id]
         @notification.origin_user_id = session[:user_id]["$oid"]
         @notification.dest_user_id = params[:user_id]
-        @notification.message = "XX WANTS YOU TO ENTER TO THE XX PROJECT"
+
+        @project = Project.find(params[:id])
+        @user = User.find(session[:user_id]["$oid"])
+
+        @notification.message =  @user.username << " WANTS YOU TO ENTER TO THE " << @project.title << " PROJECT"
         @notification.state = "WAITING"
 
         if @notification.save

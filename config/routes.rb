@@ -46,6 +46,11 @@ Rails.application.routes.draw do
   post 'project/invite', to: "project#invite"
 
 
+  get 'notifications', to: "notification#list"
+  get 'notifications/refresh', to: "notification#list"
+  patch 'notifications/accept/:id', to: "notification#accept"
+  patch 'notifications/decline/:id', to: "notification#decline"
+
 
   get '*path', to: "application#page_not_found"
 
