@@ -25,6 +25,7 @@ class NotificationController < ApplicationController
             @notifications = Notification.where(:state => 'WAITING').or(Notification.where(:state => 'CLOSED'))
         else
             @notifications = Notification.where(:state => 'WAITING', :dest_user_id => session[:user_id]["$oid"])
+            .or(Notification.where(:state => 'CLOSED', :dest_user_id => session[:user_id]["$oid"]))
         end
 
         respond_to do |format|

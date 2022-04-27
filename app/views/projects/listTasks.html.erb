@@ -2,7 +2,13 @@
 <div class="container">
    <div class="items">
             <div class="items-head">
-            <p style="text-align:center">TASKS OF <%= @project.title %></p>
+                <p style="text-align:center">TASKS OF <%= @project.title %></p>
+                
+                <div class="click_button">
+                    <form action="/project/add" method="get">
+                        <input class="btn" type="submit" value="Add Task" name="Submit" id="frm1_submit" />
+                    </form>
+                </div>
             </div>
         <div class="items-body">
             <div class="items-body-content">

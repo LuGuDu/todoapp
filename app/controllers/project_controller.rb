@@ -35,6 +35,19 @@ class ProjectController < ApplicationController
         end
     end
 
+    def shared_list
+        @projects = []
+        @notifications = Notification.where(:dest_user_id => session[:user_id]["$oid"], :state => "ACCEPT")
+        @notifications.each do |notification|
+            puts(notification.message)
+            @projects << Project.find(notification.project_id)
+        end
+
+        respond_to do |format|
+            format.html { render template: 'projects/listShared', layout: 'layouts/application', status: 200}
+        end
+    end
+
     def task_list
         @project = Project.find(params[:id])
         @tasks = Task.where(:project_id => params[:id])
