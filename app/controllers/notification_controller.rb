@@ -22,9 +22,9 @@ class NotificationController < ApplicationController
 
     def list
         if (session[:role] == "admin")
-            @notifications = Notification.all
+            @notifications = Notification.where(:state => 'WAITING').or(Notification.where(:state => 'CLOSED'))
         else
-            @notifications = Notification.where(:dest_user_id => session[:user_id]["$oid"])
+            @notifications = Notification.where(:state => 'WAITING', :dest_user_id => session[:user_id]["$oid"])
         end
 
         respond_to do |format|
@@ -32,10 +32,33 @@ class NotificationController < ApplicationController
         end
     end
 
+    def view
+        @notification = Notification.find(params[:id])
+        @notification.state = "VIEW"
+        if @notification.save
+            redirect_to "/notifications"
+        end
+    end
+
     def accept
         @notification = Notification.find(params[:id])
         @notification.state = "ACCEPT"
         if @notification.save
+            
+            @response = Notification.new
+
+            @response.project_id = @notification.project_id
+            @response.dest_user_id = @notification.origin_user_id
+            @response.origin_user_id = @notification.dest_user_id
+    
+            @project = Project.find(@response.project_id)
+            @user = User.find(@response.origin_user_id)
+    
+            @response.message =  @user.username << " " << @notification.state << "S " << @project.title << " PROJECT"
+            @response.state = "CLOSED"
+    
+            @response.save
+
             redirect_to "/notifications"
         end
     end
@@ -44,6 +67,21 @@ class NotificationController < ApplicationController
         @notification = Notification.find(params[:id])
         @notification.state = "DECLINE"
         if @notification.save
+            
+            @response = Notification.new
+
+            @response.project_id = @notification.project_id
+            @response.dest_user_id = @notification.origin_user_id
+            @response.origin_user_id = @notification.dest_user_id
+    
+            @project = Project.find(@response.project_id)
+            @user = User.find(@response.origin_user_id)
+    
+            @response.message =  @user.username << " " << @notification.state << "S " << @project.title << " PROJECT"
+            @response.state = "CLOSED"
+    
+            @response.save
+
             redirect_to "/notifications"
         end
     end

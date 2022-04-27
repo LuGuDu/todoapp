@@ -17,14 +17,24 @@
                 <% @notifications.each do |notification| %> 
                     <div class="list-element">
                         <%= notification.message %> - <%= notification.state %>   
-                    </div>                   
-                    <div class="dropdown">
-                        <span class="list_icon"><b>...</b></span>
-                        <div class="dropdown-content">
-                            <%= button_to 'Accept', "/notifications/accept/#{notification.id}", method: :patch, :class => 'btnList' %>
-                            <%= button_to 'Decline', "/notifications/decline/#{notification.id}", method: :patch, :class => 'btnList' %>
-                        </div>
-                    </div> 
+                    </div>
+
+                    <% if notification.state == 'WAITING'%>                   
+                        <div class="dropdown">
+                            <span class="list_icon"><b>...</b></span>
+                            <div class="dropdown-content">
+                                <%= button_to 'Accept', "/notifications/accept/#{notification.id}", method: :patch, :class => 'btnList' %>
+                                <%= button_to 'Decline', "/notifications/decline/#{notification.id}", method: :patch, :class => 'btnList' %>
+                            </div>
+                        </div> 
+                    <% else %>
+                        <div class="dropdown">
+                            <span class="list_icon"><b>...</b></span>
+                            <div class="dropdown-content">
+                                <%= button_to 'View', "/notifications/view/#{notification.id}", method: :patch, :class => 'btnList' %>
+                            </div>
+                        </div> 
+                    <%end%>
                 <% end %>
             </div>
         </div>

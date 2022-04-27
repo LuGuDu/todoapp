@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   get 'notifications/refresh', to: "notification#list"
   patch 'notifications/accept/:id', to: "notification#accept"
   patch 'notifications/decline/:id', to: "notification#decline"
-
+  patch 'notifications/view/:id', to: "notification#view"
 
   get '*path', to: "application#page_not_found"
 
