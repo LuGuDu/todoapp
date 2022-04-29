@@ -2,12 +2,16 @@
 <div class="container">
    <div class="items">
             <div class="items-head">
-                <p style="text-align:center">TASKS OF <%= @project.title %></p>
-                
-                <div class="click_button">
-                    <form action="/project/add" method="get">
-                        <input class="btn" type="submit" value="Add Task" name="Submit" id="frm1_submit" />
-                    </form>
+                <div class="container_flex">
+                    <p style="text-align:center">TASKS OF <%= @project.title %></p>
+                    
+                    <div class="click_button">
+                        <form action="/project/add" method="get">
+                            <input style="display:none" type="hidden" id="project_id" name="project_id" value=<%= @project.id %> >
+                            <input class="btn" type="submit" value="Add Task" name="Submit" id="frm1_submit" />
+
+                        </form>
+                    </div>
                 </div>
             </div>
         <div class="items-body">

@@ -39,6 +39,8 @@ Rails.application.routes.draw do
   get 'project/shared', to: "project#shared_list"
   get 'project/create', to: "project#create_form"
   post 'project/create', to: "project#create"
+  get 'project/add', to: "project#add_task_form"
+  post 'project/add', to: "project#add_task"
   get 'project/:id', to: "project#task_list"
   delete 'project/delete/:id', to: "project#delete"
   get 'project/update/:id', to: "project#update_form"

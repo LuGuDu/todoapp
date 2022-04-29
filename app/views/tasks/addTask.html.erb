@@ -1,0 +1,39 @@
+<div class="container">
+<div class="items">
+  <div class="items-head">
+  <p style="text-align : center ;">ADD TASK TO <%= @project.title%> <p>
+  </div>
+  <div class="items-body">
+  <form action="/project/add" method='post' value='task'>
+
+    <label for="fname">Title:</label><br>
+    <input type="text" id="title" name="title" placeholder="Title"><br>
+
+    <label for="lname">Description:</label><br>
+    <input type="text" id="description" name="description" placeholder="Description"><br>
+
+    <label for="lname">Priority:</label><br>
+    <input type="number" id="priority" name="priority" value="1" min="1" max="4"><br>
+
+    <label for="lname">DeadLine:</label><br>
+    <input type="date" id="deadline" name="deadline"><br>
+
+    <input style="display:none" type="hidden" id="project_id" name="project_id" value=<%= @project.id %> >
+
+
+    <% if current_user.role =="admin" %>
+      <label for="lname">User:</label><br>
+      <select name="user_id">
+        <% @users.each do |user| %> 
+          <option value=<%= user.id %>><%= user.email%></option>
+        <% end %>
+      </select>
+    <% end %>
+    <br><br>
+    <input class="btn" type="submit" value="Create">
+    <a href="javascript:javascript:history.go(-1)" class="btn">Cancel</a>
+
+  </form> 
+  </div>
+</div>
+</div>

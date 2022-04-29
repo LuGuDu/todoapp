@@ -48,6 +48,38 @@ class ProjectController < ApplicationController
         end
     end
 
+    def add_task_form
+        @users = User.all
+        @project = Project.find(params[:project_id])
+        respond_to do |format|
+            format.html { render template: 'tasks/addTask', layout: 'layouts/application', status: 200}
+        end
+    end
+
+    def add_task
+        @task = Task.new
+        @task.title = params[:title]
+        @task.description = params[:description]
+        @task.priority = params[:priority]
+        @task.dateCreation = DateTime.current
+        @task.dateDeadLine = DateTime.strptime(params[:deadline], '%Y-%m-%d')
+        @task.done = false
+
+        if (session[:role] == "admin")
+            @task.user_id = params["user_id"]
+        else
+            @task.user_id = session[:user_id]["$oid"]
+        end
+
+        if params[:project_id] != 'none'
+            @task.project_id = params[:project_id]
+        end
+        
+        if @task.save
+            redirect_to "/project/" << params[:project_id]
+        end
+    end
+
     def task_list
         @project = Project.find(params[:id])
         @tasks = Task.where(:project_id => params[:id])
