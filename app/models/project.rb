@@ -5,5 +5,6 @@ class Project
   field :description, type: String
 
   has_many :task, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   belongs_to :user, optional: true
 end

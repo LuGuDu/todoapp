@@ -1,0 +1,42 @@
+
+<div class= "container"> 
+    <div class="items">
+        <div class="items-head">
+            <div class="container_flex">
+                    <p>Notification List</p>
+                    <div class="click_button">
+                            <form action="/notifications/refresh" method="get">
+                            <input class="btn" type="submit" value="Refresh" 
+                                name="Submit" id="frm1_submit" />
+                            </form>
+                    </div>
+            </div> 
+        </div>
+        <div class="items-body">
+            <div class="items-body-content">
+                <% @notifications.each do |notification| %> 
+                    <div class="list-element">
+                        <%= notification.message %> - <%= notification.state %>   
+                    </div>
+
+                    <% if notification.state == 'WAITING'%>                   
+                        <div class="dropdown">
+                            <span class="list_icon"><b>...</b></span>
+                            <div class="dropdown-content">
+                                <%= button_to 'Accept', "/notifications/accept/#{notification.id}", method: :patch, :class => 'btnList' %>
+                                <%= button_to 'Decline', "/notifications/decline/#{notification.id}", method: :patch, :class => 'btnList' %>
+                            </div>
+                        </div> 
+                    <% else %>
+                        <div class="dropdown">
+                            <span class="list_icon"><b>...</b></span>
+                            <div class="dropdown-content">
+                                <%= button_to 'View', "/notifications/view/#{notification.id}", method: :patch, :class => 'btnList' %>
+                            </div>
+                        </div> 
+                    <%end%>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
