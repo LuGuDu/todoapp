@@ -1,10 +1,10 @@
 <div class="container">
 <div class="items">
   <div class="items-head">
-  <p style="text-align : center ;">CREATE NEW TASK <p>
+  <p style="text-align : center ;">ADD TASK TO <%= @project.title%> <p>
   </div>
   <div class="items-body">
-  <form action="/task/create" method='post' value='task'>
+  <form action="/project/add" method='post' value='task'>
 
     <label for="fname">Title:</label><br>
     <input type="text" id="title" name="title" placeholder="Title"><br>
@@ -18,13 +18,8 @@
     <label for="lname">DeadLine:</label><br>
     <input type="date" id="deadline" name="deadline"><br>
 
-    <label for="lname">Project:</label><br>
-    <select name="project_id">
-      <option value="none" selected>None</option>
-      <% @projects.each do |project| %> 
-        <option value=<%= project.id %>><%= project.title%></option>
-      <% end %>
-    </select><br>
+    <input style="display:none" type="hidden" id="project_id" name="project_id" value=<%= @project.id %> >
+
 
     <% if current_user.role =="admin" %>
       <label for="lname">User:</label><br>
@@ -36,11 +31,8 @@
     <% end %>
     <br><br>
     <input class="btn" type="submit" value="Create">
-    <% if current_user.role =="admin" %>
-      <a href="/task/all" class="btn">Cancel</a>
-    <% else %>
-      <a href="/task" class="btn">Cancel</a>
-    <% end%>
+    <a href="javascript:javascript:history.go(-1)" class="btn">Cancel</a>
+
   </form> 
   </div>
 </div>

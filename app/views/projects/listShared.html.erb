@@ -3,13 +3,7 @@
     <div class="items">
         <div class="items-head">
             <div class="container_flex">
-                    <p>Project List</p>
-                    <div class="click_button">
-                            <form action="/project/create" method="get">
-                            <input class="btn" type="submit" value="Create Project" 
-                                name="Submit" id="frm1_submit" />
-                            </form>
-                    </div>
+                    <p>Shared Project List</p>
             </div> 
         </div>
         <div class="items-body">
@@ -21,7 +15,6 @@
                     <div class="dropdown">
                         <span class="list_icon"><b>...</b></span>
                         <div class="dropdown-content">
-                            <%= button_to 'Invite', "/project/invite/#{project.id}", method: :get, :class => 'btnList' %>
                             <%= button_to 'Delete', "/project/delete/#{project.id}", method: :delete, :class => 'btnList' %>
                             <%= button_to 'Update', "/project/update/#{project.id}", method: :get, :class => 'btnList' %>
                         </div>

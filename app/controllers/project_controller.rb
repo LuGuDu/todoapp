@@ -35,6 +35,51 @@ class ProjectController < ApplicationController
         end
     end
 
+    def shared_list
+        @projects = []
+        @notifications = Notification.where(:dest_user_id => session[:user_id]["$oid"], :state => "ACCEPT")
+        @notifications.each do |notification|
+            puts(notification.message)
+            @projects << Project.find(notification.project_id)
+        end
+
+        respond_to do |format|
+            format.html { render template: 'projects/listShared', layout: 'layouts/application', status: 200}
+        end
+    end
+
+    def add_task_form
+        @users = User.all
+        @project = Project.find(params[:project_id])
+        respond_to do |format|
+            format.html { render template: 'tasks/addTask', layout: 'layouts/application', status: 200}
+        end
+    end
+
+    def add_task
+        @task = Task.new
+        @task.title = params[:title]
+        @task.description = params[:description]
+        @task.priority = params[:priority]
+        @task.dateCreation = DateTime.current
+        @task.dateDeadLine = DateTime.strptime(params[:deadline], '%Y-%m-%d')
+        @task.done = false
+
+        if (session[:role] == "admin")
+            @task.user_id = params["user_id"]
+        else
+            @task.user_id = session[:user_id]["$oid"]
+        end
+
+        if params[:project_id] != 'none'
+            @task.project_id = params[:project_id]
+        end
+        
+        if @task.save
+            redirect_to "/project/" << params[:project_id]
+        end
+    end
+
     def task_list
         @project = Project.find(params[:id])
         @tasks = Task.where(:project_id => params[:id])
@@ -110,5 +155,35 @@ class ProjectController < ApplicationController
                 redirect_to "/project"
             end
         end
+    end
+
+    def invite_form
+        @project = Project.find(params[:id])
+        @users = User.all
+        respond_to do |format|
+            format.html { render template: 'projects/invite', layout: 'layouts/application', status: 200}
+        end
+    end
+
+    def invite
+        @notification = Notification.new
+        @notification.project_id = params[:id]
+        @notification.origin_user_id = session[:user_id]["$oid"]
+        @notification.dest_user_id = params[:user_id]
+
+        @project = Project.find(params[:id])
+        @user = User.find(session[:user_id]["$oid"])
+
+        @notification.message =  @user.username << " WANTS YOU TO ENTER TO THE " << @project.title << " PROJECT"
+        @notification.state = "WAITING"
+
+        if @notification.save
+            if (session[:role] == "admin")
+                redirect_to "/project/all"
+            else
+                redirect_to "/project"
+            end
+        end
+
     end
 end
