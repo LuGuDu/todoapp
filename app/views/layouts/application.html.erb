@@ -51,7 +51,9 @@
                     </a>
                     </div>
                 <% else %>
-                    <div><%= current_user.username %></div>
+                    <div>
+                        <%= current_user.username %>              
+                    </div>
                 <% end %>
 
                 <% if logged_in? %>
@@ -59,6 +61,11 @@
                     <div class="dropdown-navbar" id="header-toggle">
                         <span class='bx bx-menu'></span>
                         <div class="dropdown-content-navbar">
+
+                            <a href="/notifications" class="nav__link active">
+                                <i class='bx bx-notification nav__icon' ></i>
+                                <span class="nav__name">Notifications </span>
+                            </a>
 
                             <% if current_user.role =="normal" %>
                                 <a href="/task" class="nav__link active">
@@ -76,10 +83,16 @@
                                     <span class="nav__name">Projects</span>
                                 </a>
 
+                                <a href="/project/shared" class="nav__link">
+                                    <i class='bx bx-cloud nav__icon' ></i>
+                                    <span class="nav__name">Shared Projects</span>
+                                </a>
+
                                 <a href="/task/list_all" class="nav__link">
                                     <i class='bx bx-task nav__icon' ></i>
                                     <span class="nav__name">All tasks</span>
                                 </a>
+
                             <% end %>
                             
                             <% if current_user.role =="admin" %>
@@ -119,6 +132,11 @@
                         <div class="nav__items">
                             <h3 class="nav__subtitle">Menu</h3>
     
+                            <a href="/notifications" class="nav__link active">
+                                <i class='bx bx-notification nav__icon' ></i>
+                                <span class="nav__name">Notifications </span>
+                            </a>
+
                             <% if current_user.role =="normal" %>
                                 <a href="/task" class="nav__link active">
                                     <i class='bx bx-home nav__icon' ></i>
@@ -133,6 +151,11 @@
                                 <a href="/project" class="nav__link">
                                     <i class='bx bx-folder nav__icon' ></i>
                                     <span class="nav__name">Projects</span>
+                                </a>
+
+                                <a href="/project/shared" class="nav__link">
+                                    <i class='bx bx-cloud nav__icon' ></i>
+                                    <span class="nav__name">Shared Projects</span>
                                 </a>
 
                                 <a href="/task/list_all" class="nav__link">
