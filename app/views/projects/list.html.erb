@@ -21,7 +21,15 @@
                     <div class="dropdown">
                         <span class="list_icon"><b>...</b></span>
                         <div class="dropdown-content">
-                            <%= button_to 'Invite', "/project/invite/#{project.id}", method: :get, :class => 'btnList' %>
+                            <% if !project.revoke %>
+                                <%= button_to 'Invite', "/project/invite/#{project.id}", method: :get, :class => 'btnList' %>
+                                <%= button_to 'Revoke', "/project/revoke/#{project.id}", method: :patch, :class => 'btnList' %>
+                            <% end %>
+
+                            <% if current_user.role == "admin" && project.revoke %>
+                                <%= button_to 'Unrevoke', "/project/unrevoke/#{project.id}", method: :patch, :class => 'btnList' %>
+                            <% end %>
+  
                             <%= button_to 'Delete', "/project/delete/#{project.id}", method: :delete, :class => 'btnList' %>
                             <%= button_to 'Update', "/project/update/#{project.id}", method: :get, :class => 'btnList' %>
                         </div>
