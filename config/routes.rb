@@ -47,6 +47,8 @@ Rails.application.routes.draw do
   post 'project/update', to: "project#update"
   get 'project/invite/:id', to: "project#invite_form"
   post 'project/invite', to: "project#invite"
+  patch 'project/revoke/:id', to: "project#revoke"
+  patch 'project/unrevoke/:id', to: "project#unrevoke"
 
 
   get 'notifications', to: "notification#list"

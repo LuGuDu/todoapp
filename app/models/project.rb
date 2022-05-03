@@ -3,6 +3,7 @@ class Project
   
   field :title, type: String
   field :description, type: String
+  field :revoke, type: Boolean
 
   has_many :task, dependent: :destroy
   has_many :notifications, dependent: :destroy

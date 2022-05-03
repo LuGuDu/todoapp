@@ -76,6 +76,33 @@ class ProjectController < ApplicationController
         end
         
         if @task.save
+
+            @notifications = Notification.where(:project_id => params[:project_id], :state => 'ACCEPT')
+            @user = User.find(session[:user_id]["$oid"])
+            @project = Project.find(params[:project_id])
+
+            @notifications.each do |notification|
+                @userDest = User.find(notification.dest_user_id)
+    
+                @notification = Notification.new
+                @notification.origin_user_id = session[:user_id]["$oid"]
+                @notification.dest_user_id = @userDest.id
+                @notification.message =  @user.username + " ADDED A TASK TO " + @project.title + " PROJECT"
+                @notification.state = "CLOSED"
+                @notification.project_id = params[:project_id]
+                @notification.save
+
+                @userOr = User.find(notification.origin_user_id)
+
+                @notification2 = Notification.new
+                @notification2.origin_user_id = session[:user_id]["$oid"]
+                @notification2.dest_user_id = @userOr.id
+                @notification2.message =  @user.username + " ADDED A TASK TO  " + @project.title + " PROJECT"
+                @notification2.state = "CLOSED"
+                @notification2.project_id = params[:project_id]
+                @notification2.save
+            end
+
             redirect_to "/project/" << params[:project_id]
         end
     end
@@ -107,7 +134,7 @@ class ProjectController < ApplicationController
             user_id = session[:user_id]["$oid"]
         end
 
-        @project = Project.new({"title"=> params["title"], "description"=> params["description"], "user_id"=> user_id}) 
+        @project = Project.new({"title"=> params["title"], "description"=> params["description"], "user_id"=> user_id, "revoke"=> false}) 
         if @project.save
             if (session[:role] == "admin")
                 redirect_to "/project/all"
@@ -149,6 +176,32 @@ class ProjectController < ApplicationController
         end
 
         if @project.save
+
+            @notifications = Notification.where(:project_id => params[:id], :state => 'ACCEPT')
+            @user = User.find(session[:user_id]["$oid"])
+
+            @notifications.each do |notification|
+                @userDest = User.find(notification.dest_user_id)
+    
+                @notification = Notification.new
+                @notification.origin_user_id = session[:user_id]["$oid"]
+                @notification.dest_user_id = @userDest.id
+                @notification.message =  @user.username + " UPDATED " + @project.title + " PROJECT"
+                @notification.state = "CLOSED"
+                @notification.project_id = params[:id]
+                @notification.save
+
+                @userOr = User.find(notification.origin_user_id)
+
+                @notification2 = Notification.new
+                @notification2.origin_user_id = session[:user_id]["$oid"]
+                @notification2.dest_user_id = @userOr.id
+                @notification2.message =  @user.username + " UPDATED " + @project.title + " PROJECT"
+                @notification2.state = "CLOSED"
+                @notification2.project_id = params[:id]
+                @notification2.save
+            end
+
             if (session[:role] == "admin")
                 redirect_to "/project/all"
             else
@@ -185,5 +238,83 @@ class ProjectController < ApplicationController
             end
         end
 
+    end
+
+    def unrevoke
+        @project = Project.find(params[:id])
+        @project.revoke = false
+
+        @user = User.find(session[:user_id]["$oid"])
+
+        @notifications = Notification.where(:project_id => params[:id], :state => 'ACCEPT')
+
+        @notifications.each do |notification|
+            @userDest = User.find(notification.dest_user_id)
+
+            @notification = Notification.new
+            @notification.origin_user_id = session[:user_id]["$oid"]
+            @notification.dest_user_id = @userDest.id
+            @notification.message =  @user.username + " UNREVOKE " + @project.title + " PROJECT"
+            @notification.state = "CLOSED"
+            @notification.project_id = params[:id]
+            @notification.save
+
+            @userOr = User.find(notification.origin_user_id)
+
+            @notification2 = Notification.new
+            @notification2.origin_user_id = session[:user_id]["$oid"]
+            @notification2.dest_user_id = @userOr.id
+            @notification2.message =  @user.username + " UNREVOKE " + @project.title + " PROJECT"
+            @notification2.state = "CLOSED"
+            @notification2.project_id = params[:id]
+            @notification2.save
+        end
+
+        if @project.save
+            if (session[:role] == "admin")
+                redirect_to "/project/all"
+            else
+                redirect_to "/project"
+            end
+        end
+    end
+
+    def revoke
+        @project = Project.find(params[:id])
+        @project.revoke = true
+
+        @user = User.find(session[:user_id]["$oid"])
+
+        @notifications = Notification.where(:project_id => params[:id], :state => 'ACCEPT')
+
+        @notifications.each do |notification|
+            @userDest = User.find(notification.dest_user_id)
+
+            @notification = Notification.new
+            @notification.origin_user_id = session[:user_id]["$oid"]
+            @notification.dest_user_id = @userDest.id
+            @notification.message =  @user.username + " REVOKE " + @project.title + " PROJECT"
+            @notification.state = "CLOSED"
+            @notification.project_id = params[:id]
+            @notification.save
+
+            @userOr = User.find(notification.origin_user_id)
+
+            @notification2 = Notification.new
+            @notification2.origin_user_id = session[:user_id]["$oid"]
+            @notification2.dest_user_id = @userOr.id
+            @notification2.message =  @user.username + " UNREVOKE " + @project.title + " PROJECT"
+            @notification2.state = "CLOSED"
+            @notification2.project_id = params[:id]
+            @notification2.save
+        end
+
+        if @project.save
+            if (session[:role] == "admin")
+                redirect_to "/project/all"
+            else
+                redirect_to "/project"
+            end
+        end
     end
 end
