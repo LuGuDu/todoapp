@@ -671,7 +671,7 @@ img {
   transform: scale(1.1);
 }
 
-.icon-btn:hover i.fa-check {
+.icon-btn:hover i.fa-user-plus {
   color: #3498db;
   transform: scale(1.1);
 }
