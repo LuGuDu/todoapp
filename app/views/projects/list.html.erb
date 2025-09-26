@@ -1,41 +1,46 @@
-
-<div class= "container"> 
-    <div class="items">
-        <div class="items-head">
-            <div class="container_flex">
-                    <p>Project List</p>
-                    <div class="click_button">
-                            <form action="/project/create" method="get">
-                            <input class="btn" type="submit" value="Create Project" 
-                                name="Submit" id="frm1_submit" />
-                            </form>
-                    </div>
-            </div> 
+<div class= "container">
+  <div class="items">
+    <div class="items-head">
+      <div class="container_flex">
+        <p>Project List</p>
+        <div class="click_button">
+          <form action="/project/create" method="get">
+            <button type="submit" class="icon-btn">
+              <i class="fa fa-plus"></i>
+            </button>
+          </form>
         </div>
-        <div class="items-body">
-            <div class="items-body-content">
-                <% @projects.each do |project| %> 
-                    <div class="list-element">
-                        <%= link_to project.title, "/project/#{project.id}", method: :get %>    
-                    </div>                   
-                    <div class="dropdown">
-                        <span class="list_icon"><b>...</b></span>
-                        <div class="dropdown-content">
-                            <% if !project.revoke %>
-                                <%= button_to 'Invite', "/project/invite/#{project.id}", method: :get, :class => 'btnList' %>
-                                <%= button_to 'Revoke', "/project/revoke/#{project.id}", method: :patch, :class => 'btnList' %>
-                            <% end %>
-
-                            <% if current_user.role == "admin" && project.revoke %>
-                                <%= button_to 'Unrevoke', "/project/unrevoke/#{project.id}", method: :patch, :class => 'btnList' %>
-                            <% end %>
-  
-                            <%= button_to 'Delete', "/project/delete/#{project.id}", method: :delete, :class => 'btnList' %>
-                            <%= button_to 'Update', "/project/update/#{project.id}", method: :get, :class => 'btnList' %>
-                        </div>
-                    </div> 
-                <% end %>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="items-body">
+      <div class="items-body-content">
+        <% @projects.each do |project| %>
+          <div class="list-element">
+            <%= link_to project.title, "/project/#{project.id}", method: :get, class: "project-link" %>
+            <div class="project-actions">
+              <% unless project.revoke %>
+                <%= button_to "/project/invite/#{project.id}", method: :get, class: 'icon-btn invite-btn', title: "Invite" do %>
+                  <i class="fa fa-user-plus"></i>
+                <% end %>
+                <%= button_to "/project/revoke/#{project.id}", method: :patch, class: 'icon-btn revoke-btn', title: "Revoke" do %>
+                  <i class="fa fa-ban"></i>
+                <% end %>
+              <% end %>
+              <% if current_user.role == "admin" && project.revoke %>
+                <%= button_to "/project/unrevoke/#{project.id}", method: :patch, class: 'icon-btn unrevoke-btn', title: "Unrevoke" do %>
+                  <i class="fa fa-check"></i>
+                <% end %>
+              <% end %>
+              <%= button_to "/project/delete/#{project.id}", method: :delete, class: 'icon-btn delete-btn', title: "Delete" do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+              <%= button_to "/project/update/#{project.id}", method: :get, class: 'icon-btn update-btn', title: "Update" do %>
+                <i class="fa fa-pen"></i>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="items">
     <div class="items-head">
-      <p style="text-align : center;">UPDATE <b style="color:red;"><%= @task.title %></b></p>
+      <p style="text-align : center;">Update <b style="color:red;"><%= @task.title %></b></p>
     </div>
     <div class="items-body">
       <form action="/task/update/" method='post' value='project'>
@@ -12,7 +12,7 @@
             <input type="text" id="title" name="title" value=<%= @task.title %>><br>
           </div>
           <!--label for="lname">Description:</label><br>
-        <input type="text" id="description" name="description" value=<%= @task.description %>><br-->
+          <input type="text" id="description" name="description" value=<%= @task.description %>><br-->
           <div class="form-row">
             <label>Priority:</label>
             <div class="priority-group">

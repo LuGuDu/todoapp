@@ -1,35 +1,34 @@
-
 <div class="container">
-<div class="items">
-<div class="items-head">
-<p style="text-align: center">CREATE NEW PROJECT <p>
-</div>
-<div class="items-body">
-<form action="/project/create" method='post' value='project'>
-
-  <label for="fname">Title:</label><br>
-  <input type="text" id="title" name="title" placeholder="Title"><br>
-
-  <label for="lname">Description:</label><br>
-  <input type="text" id="description" name="description" placeholder="Description"><br>
-
-  <% if current_user.role =="admin" %>
-    <label for="lname">User:</label><br>
-    <select name="user_id">
-      <% @users.each do |user| %> 
-        <option value=<%= user.id %>><%= user.email%></option>
-      <% end %>
-    </select>
-  <% end %>
-  <br><br>
-
-  <input class="btn" type="submit" value="Create">
-  <% if current_user.role =="admin" %>
-    <a href="/project/all" class="btn">Cancel</a>
-  <% else %>
-    <a href="/project" class="btn">Cancel</a>
-  <% end%>
-  
-</form>
-</div> 
-</div>
+  <div class="items">
+    <div class="items-head">
+      <p style="text-align: center">Create New Project
+        <p>
+        </div>
+        <div class="items-body">
+          <form action="/project/create" method='post' value='project'>
+            <form class="form-container">
+              <div class="form-row">
+                <label for="fname">Title:</label><br>
+                <input type="text" id="title" name="title" placeholder="Title"><br>
+              </div>
+              <!--label for="lname">Description:</label><br>
+  <input type="text" id="description" name="description" placeholder="Description"><br-->
+              <% if current_user.role =="admin" %>
+                <label for="lname">User:</label><br>
+                <select name="user_id">
+                  <% @users.each do |user| %>
+                    <option value=<%= user.id %>><%= user.email%></option>
+                    <% end %>
+                  </select>
+                <% end %>
+                <div class="form-actions">
+                  <input class="btn" type="submit" value="Create">
+                  <% if current_user.role =="admin" %>
+                    <a href="/project/all" class="btn">Cancel</a>
+                  <% else %>
+                    <a href="/project" class="btn">Cancel</a>
+                  <% end%>
+                </div>
+              </form>
+            </div>
+          </div>

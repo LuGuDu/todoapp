@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   post 'task/create', to: "task#create"
   patch 'task/check/:id', to:"task#check"
   patch 'task/uncheck/:id', to:"task#uncheck"
+    patch 'task/check_project/:pid/:id', to:"task#check_project"
+  patch 'task/uncheck_project/:pid/:id', to:"task#uncheck_project"
   delete 'task/delete/:id', to:"task#delete"
   get 'task/update/:id', to:"task#update_form"
   post 'task/update', to: "task#update"

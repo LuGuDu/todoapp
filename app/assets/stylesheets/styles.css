@@ -525,7 +525,6 @@ img {
 .items-body-content {
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
   gap: 10px;
   padding: 10px;
   font-size: 13px;
@@ -671,6 +670,17 @@ img {
   color: #3498db;
   transform: scale(1.1);
 }
+
+.icon-btn:hover i.fa-check {
+  color: #3498db;
+  transform: scale(1.1);
+}
+
+.icon-btn:hover i.fa-ban {
+  color: #e74c3c;
+  transform: scale(1.1);
+}
+
 
 .icon-btn:hover i.fa-trash {
   color: #e74c3c;
@@ -866,4 +876,29 @@ a.btn {
 a.btn:hover {
   background: #b92929;
   transform: scale(1.03);
+}
+
+.list-element {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.project-link {
+  font-weight: bold;
+  color: #007bff;
+  text-decoration: none;
+  font-size:16px;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+
+.project-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
 }

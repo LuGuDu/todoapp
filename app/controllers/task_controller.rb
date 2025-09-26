@@ -70,6 +70,32 @@ class TaskController < ApplicationController
         end
     end
 
+        def check_project
+        @task = Task.find(params[:id])
+        @project = Project.find(params[:pid])
+        @task.done = true
+        if @task.save
+            if (session[:role] == "admin")
+                redirect_to "/task/all"
+            else
+                redirect_to "/project/"+@project.id
+            end
+        end
+    end
+    
+    def uncheck_project
+        @task = Task.find(params[:id])
+        @project = Project.find(params[:pid])
+        @task.done = false
+        if @task.save
+            if (session[:role] == "admin")
+                redirect_to "/task/all"
+            else
+                redirect_to "/project/"+@project.id
+            end
+        end
+    end
+
     def list_today
         @tasks = []
         @allTasks = Task.where(:user_id => session[:user_id]["$oid"])
