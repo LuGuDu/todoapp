@@ -112,7 +112,11 @@ class TaskController < ApplicationController
         @task.description = params[:description]
         @task.priority = params[:priority]
         @task.dateCreation = DateTime.current
-        @task.dateDeadLine = DateTime.strptime(params[:deadline], '%Y-%m-%d')
+        if params[:deadLine].present?
+            @task.dateDeadLine = DateTime.strptime(params[:deadline], '%Y-%m-%d')
+        else
+            @task.dateDeadLine = DateTime.current
+        end
         @task.done = false
 
         if (session[:role] == "admin")

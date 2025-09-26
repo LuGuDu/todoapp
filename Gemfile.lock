@@ -68,7 +68,9 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    base64 (0.3.0)
     bcrypt (3.1.17)
+    bigdecimal (3.2.3)
     bindex (0.8.1)
     bootsnap (1.10.3)
       msgpack (~> 1.2)
@@ -105,6 +107,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    logger (1.7.0)
     loofah (2.14.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -114,6 +117,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.7.1)
     minitest (5.15.0)
     mongo (2.17.0)
       bson (>= 4.8.2, < 5.0.0)
@@ -122,6 +126,7 @@ GEM
       mongo (>= 2.10.5, < 3.0.0)
       ruby2_keywords (~> 0.0.5)
     msgpack (1.4.5)
+    mutex_m (0.3.0)
     net-imap (0.2.3)
       digest
       net-protocol
@@ -137,9 +142,11 @@ GEM
       digest
       net-protocol
       timeout
-    nio4r (2.5.8)
-    nokogiri (1.13.1-x64-mingw32)
+    nio4r (2.7.4)
+    nokogiri (1.13.1)
+      mini_portile2 (~> 2.7.0)
       racc (~> 1.4)
+    ostruct (0.6.3)
     public_suffix (4.0.6)
     puma (5.6.2)
       nio4r (~> 2.0)
@@ -220,16 +227,23 @@ GEM
     zeitwerk (2.5.4)
 
 PLATFORMS
-  x64-mingw32
+  arm64-darwin-24
+  x64-mingw-ucrt
 
 DEPENDENCIES
+  base64
   bcrypt (~> 3.1.7)
+  bigdecimal
   bootsnap
   capybara
   debug
   importmap-rails
   jbuilder
+  logger
   mongoid
+  mutex_m
+  nio4r (~> 2.6)
+  ostruct
   puma (~> 5.0)
   rails (~> 7.0.2, >= 7.0.2.2)
   selenium-webdriver
@@ -241,7 +255,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 3.0.3p157
+   ruby 3.4.5p51
 
 BUNDLED WITH
-   2.2.32
+   2.7.2

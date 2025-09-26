@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.0.3"
+ruby "3.4.5"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.2", ">= 7.0.2.2"
@@ -26,6 +26,15 @@ gem "jbuilder"
 
 #Manejador Mongodb
 gem 'mongoid'
+
+gem 'nio4r', '~> 2.6'
+
+gem 'base64'
+gem 'ostruct'
+gem 'logger'
+gem 'bigdecimal'
+gem 'mutex_m'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

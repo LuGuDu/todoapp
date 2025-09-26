@@ -4,8 +4,7 @@ development:
     # Defines the default client. (required)
     default:
       # Mongoid can connect to a URI accepted by the driver:
-      uri: mongodb+srv://admin:EcDRYOQVeWX42cPU@clusterlugudu.smne6.mongodb.net/todoapp_development
-
+      uri: mongodb+srv://lucasgutierrez:lugudu00MONGO@todoapp.ahidjce.mongodb.net/todoapp?authSource=admin&retryWrites=true&w=majority
       # Otherwise define the parameters separately.
       # This defines the name of the default database that Mongoid can connect to.
       # (required).
@@ -181,7 +180,7 @@ test:
 production:
   clients:
     default:
-      uri: mongodb+srv://admin:EcDRYOQVeWX42cPU@clusterlugudu.smne6.mongodb.net/todoapp_development
+      uri: mongodb+srv://lucasgutierrez:lugudu00MONGO@todoapp.ahidjce.mongodb.net/?retryWrites=true&w=majority&appName=todoapp
 
       options:
         server_selection_timeout: 5
