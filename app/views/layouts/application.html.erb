@@ -9,11 +9,21 @@
 
         <!--========== CSS ==========-->
         <!--<link rel="stylesheet" href="/app/assets/stylesheets/styles.css" >-->
+        <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" %>
+
 
         <%= stylesheet_link_tag 'styles.css' %>
+        
 
         <title>Todoapp</title>
-        <%= favicon_link_tag "logo.png" %>
+        
+        <%= favicon_link_tag "logo-light.png", rel: "icon", type: "image/png", media: "(prefers-color-scheme: light)" %>
+
+        <%= favicon_link_tag "logo-light.png", rel: "icon", type: "image/png" %> 
+
+        <%= favicon_link_tag "logo-dark.png",  rel: "icon", type: "image/png", media: "(prefers-color-scheme: dark)" %>
+
+
 
     </head>
     <body>
@@ -126,7 +136,7 @@
             <nav class="nav__container">
                 <div>
                     <a href="/task" class="nav__link nav__logo">
-                        <i class='bx bxs-disc nav__icon' ></i>
+                        <img src="/assets/logo-light.png" alt="TodoApp Logo" class="nav__logo-img">
                         <span class="nav__logo-name">TodoApp</span>
                     </a>
     

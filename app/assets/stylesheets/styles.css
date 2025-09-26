@@ -159,6 +159,20 @@ img {
   margin-bottom: 2.5rem;
 }
 
+/* Logo de la app */
+.nav__logo-img {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+  object-fit: contain;
+  transition: none; /* evita animaciones de hover */
+}
+
+/* Opcional: si el contenedor tiene hover que escala todo, cancélalo para la img */
+.nav__link.nav__logo:hover .nav__logo-img {
+  transform: none;
+}
+
 .nav__list, 
 .nav__items {
   display: -ms-grid;
@@ -458,7 +472,7 @@ img {
 }
 
 .items {
-  width: 500px;
+  width: 800px;
   background: #fffffe;
   box-shadow: 0 3px 6px rgba(black,0.16), 0 3px 6px rgba(black,0.23);
   border-top: 10px solid #0B5AA2;
@@ -487,14 +501,13 @@ img {
 }
 
 .items-body-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   padding: 10px;
-  padding-right: 0px;
-  display: grid;
-  grid-template-columns: 10fr 1fr;
-  grid-template-rows : 50px 50px 1fr ; 
+  font-size: 13px;  
+  padding: 10px;
   /*background-color: lightblue;*/  
-  font-size: 13px;
-  grid-gap: 10px;
   border: 1px solid transparent;    
 }
 
@@ -542,4 +555,109 @@ img {
   background-color: #d3d9dd85;
   border-radius: 15px;
   border: 1px solid #0B5AA2;
+}
+
+ .round-check {
+  /* quitamos el estilo nativo del checkbox */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* tamaño y forma */
+  width: 15px;
+  height: 15px;
+  border: 2px solid #4CAF50;
+  border-radius: 50%; /* círculo */
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  background-color: white;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* cuando está marcado */
+.round-check:checked {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+/* puntito interior */
+.round-check:checked::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: white;
+}
+
+.tasks-container {
+  display: flex;
+  flex-direction: column; /* cada tarea en su fila */
+  gap: 6px;               /* espacio entre tareas */
+}
+
+.list-element {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* título + acciones separados */
+  padding: 6px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.task-title {
+  flex: 1; /* ocupa todo el espacio entre checkbox e iconos */
+  margin: 0 10px;
+  font-size:16px;
+}
+
+.task-title.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.icon-btn i {
+  font-size: 18px;
+  color: #555;
+  transition: color 0.2s;
+}
+
+.icon-btn:hover i.fa-pen {
+  color: #3498db;
+  transform: scale(1.1);
+}
+
+.icon-btn:hover i.fa-trash {
+  color: #e74c3c;
+  transform: scale(1.1);
+}
+
+.click_button i.fa-plus {
+background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 30px;  /* tamaño del icono */
+  /*color: #4CAF50;   /* verde para añadir */
+  padding: 6px;
+  padding-right:25px;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.icon-btn:hover i.fa-plus{
+  transform: scale(1.2);
+  color: #45a049;   /* verde más oscuro al pasar el mouse */
 }
