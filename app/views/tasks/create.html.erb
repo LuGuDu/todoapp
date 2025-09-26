@@ -1,47 +1,64 @@
 <div class="container">
-<div class="items">
-  <div class="items-head">
-  <p style="text-align : center ;">CREATE NEW TASK <p>
-  </div>
-  <div class="items-body">
-  <form action="/task/create" method='post' value='task'>
+  <div class="items">
+    <div class="items-head">
+      <p style="text-align : center ;">CREATE NEW TASK 
+        <p>
+        </div>
+        <div class="items-body">
+          <form action="/task/create" method='post' value='task'>
+            <form class="form-container">
+              <div class="form-row">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" placeholder="Title">
+              </div>
+              <!--div class="form-row">
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" placeholder="Description">
+      </div-->
+              <div class="form-row">
+                <label>Priority:</label>
+                <div class="priority-group">
+                  <input type="radio" id="p1" name="priority" value="1">
+                  <label for="p1" class="priority-btn priority-1">1</label>
+                  <input type="radio" id="p2" name="priority" value="2">
+                  <label for="p2" class="priority-btn priority-2">2</label>
+                  <input type="radio" id="p3" name="priority" value="3">
+                  <label for="p3" class="priority-btn priority-3">3</label>
+                  <input type="radio" id="p4" name="priority" value="4">
+                  <label for="p4" class="priority-btn priority-4">4</label>
+                </div>
+              </div>
+              <div class="form-row">
+                <label for="deadline">Deadline:</label>
+                <input type="date" id="deadline" name="deadline">
+              </div>
+              <div class="form-row">
+                <label for="lname">Project:</label><br>
+                <select name="project_id">
+                  <option value="none" selected>None</option>
+                  <% @projects.each do |project| %>
+                    <option value=<%= project.id %>><%= project.title%></option>
+                    <% end %>
+                  </select><br>
+                </div>
+                <% if current_user.role =="admin" %>
+                  <label for="lname">User:</label><br>
+                  <select name="user_id">
+                    <% @users.each do |user| %>
+                      <option value=<%= user.id %>><%= user.email%></option>
+                      <% end %>
+                    </select>
+                  <% end %>
 
-    <label for="fname">Title:</label><br>
-    <input type="text" id="title" name="title" placeholder="Title"><br>
-
-    <label for="lname">Description:</label><br>
-    <input type="text" id="description" name="description" placeholder="Description"><br>
-
-    <label for="lname">Priority:</label><br>
-    <input type="number" id="priority" name="priority" value="1" min="1" max="4"><br>
-
-    <label for="lname">DeadLine:</label><br>
-    <input type="date" id="deadline" name="deadline"><br>
-
-    <label for="lname">Project:</label><br>
-    <select name="project_id">
-      <option value="none" selected>None</option>
-      <% @projects.each do |project| %> 
-        <option value=<%= project.id %>><%= project.title%></option>
-      <% end %>
-    </select><br>
-
-    <% if current_user.role =="admin" %>
-      <label for="lname">User:</label><br>
-      <select name="user_id">
-        <% @users.each do |user| %> 
-          <option value=<%= user.id %>><%= user.email%></option>
-        <% end %>
-      </select>
-    <% end %>
-    <br><br>
-    <input class="btn" type="submit" value="Create">
-    <% if current_user.role =="admin" %>
-      <a href="/task/all" class="btn">Cancel</a>
-    <% else %>
-      <a href="/task" class="btn">Cancel</a>
-    <% end%>
-  </form> 
-  </div>
-</div>
-</div>
+                  <div class="form-actions">
+                    <input class="btn" type="submit" value="Create">
+                    <% if current_user.role =="admin" %>
+                      <a href="/task/all" class="btn">Cancel</a>
+                    <% else %>
+                      <a href="/task" class="btn">Cancel</a>
+                    <% end %>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
